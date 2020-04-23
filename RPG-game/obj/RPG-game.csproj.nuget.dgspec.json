@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Users/adamantos/Projects/RPG-game/RPG-game/RPG-game.csproj": {}
+    "/Users/adamantos/Projects/2019p2prg-adventure-rpg-game-hubnerova-antos/RPG-game/RPG-game.csproj": {}
   },
   "projects": {
-    "/Users/adamantos/Projects/RPG-game/RPG-game/RPG-game.csproj": {
+    "/Users/adamantos/Projects/2019p2prg-adventure-rpg-game-hubnerova-antos/RPG-game/RPG-game.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/adamantos/Projects/RPG-game/RPG-game/RPG-game.csproj",
+        "projectUniqueName": "/Users/adamantos/Projects/2019p2prg-adventure-rpg-game-hubnerova-antos/RPG-game/RPG-game.csproj",
         "projectName": "RPG-game",
-        "projectPath": "/Users/adamantos/Projects/RPG-game/RPG-game/RPG-game.csproj",
+        "projectPath": "/Users/adamantos/Projects/2019p2prg-adventure-rpg-game-hubnerova-antos/RPG-game/RPG-game.csproj",
         "packagesPath": "/Users/adamantos/.nuget/packages/",
-        "outputPath": "/Users/adamantos/Projects/RPG-game/RPG-game/obj/",
+        "outputPath": "/Users/adamantos/Projects/2019p2prg-adventure-rpg-game-hubnerova-antos/RPG-game/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/adamantos/.config/NuGet/NuGet.Config"
@@ -35,6 +35,12 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
+          "dependencies": {
+            "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
+              "target": "Package",
+              "version": "[3.1.1, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",

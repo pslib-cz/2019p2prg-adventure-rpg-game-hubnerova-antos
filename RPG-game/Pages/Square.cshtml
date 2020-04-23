@@ -1,0 +1,30 @@
+@page
+@model RPG_game.Pages.SquareModel
+@{
+    ViewData["Title"] = "Square";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Square</title>
+</head>
+<body>
+    @section Scripts {
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    }
+    <div class="text-center">
+        <h1 class="display-4">Náměstí</h1>
+        <p>Přišel jsi na náměstí, můžeš pokračovat několika různými směry. Který si vybereš?</p>
+        <form method="post">
+            <button asp-page="/Room">Zpět domů</button>
+            <button asp-page="/Park">Do parku</button>
+            <button asp-page="/Moonbucks">Do kavárny</button>
+            <button asp-page="/Zohans">Do kadeřnictví</button>
+            <button asp-page="/Cinema">Do kina</button>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,26 @@
+@page
+@model RPG_game.Pages.CinemaModel
+@{
+    ViewData["Title"] = "Cinema";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Cinema</title>
+</head>
+<body>
+    @section Scripts {
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    }
+    <div class="text-center">
+        <h1 class="display-4">Kino Cinnamon</h1>
+        <p>Nacházíš se v kině, s výběrem filmu ti pomůže Pepa Hřebec, zkus s ním promluvit 🤓</p>
+        <form method="post">
+            <button asp-page="/Square">Zpět na náměstí</button>
+        </form>
+    </div>
+</body>
+</html>

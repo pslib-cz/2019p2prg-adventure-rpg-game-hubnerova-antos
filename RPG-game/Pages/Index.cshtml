@@ -4,7 +4,11 @@
     ViewData["Title"] = "Home page";
 }
 
+<!--Úvodní stránka-->
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <h1 class="display-4">Hra beze jména</h1>
+    <p>Vítej. Účelem této hry je zlepšit tvou úroveň v seznamování se. A když ne to, tak tě alespoň na chvíli zabavit. Přejeme mnoho štěstí! </p>
+    <form method="post">
+        <button asp-page="/Startup">Začít hru!</button>
+    </form>
 </div>

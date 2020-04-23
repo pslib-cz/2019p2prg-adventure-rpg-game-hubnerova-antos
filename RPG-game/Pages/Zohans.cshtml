@@ -1,0 +1,26 @@
+@page
+@model RPG_game.Pages.ZohansModel
+@{
+    ViewData["Title"] = "Zohan’s";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Zohans</title>
+</head>
+<body>
+    @section Scripts {
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    }
+    <div class="text-center">
+        <h1 class="display-4">Kadeřnictví Zohan’s</h1>
+        <p>Kadeřnictví Zohan’s</p>
+        <form method="post">
+            <button asp-page="/Square">Zpět na náměstí</button>
+        </form>
+    </div>
+</body>
+</html>

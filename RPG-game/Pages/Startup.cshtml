@@ -1,0 +1,31 @@
+@page
+@model RPG_game.Pages.StartupModel
+@using RPG_game.Model
+@{
+    ViewData["Title"] = "Startup page";
+}
+<!--Startup tabulka-->
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Startup</title>
+</head>
+<body>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+    <div class="text-center">
+        <h1 class="display-4">Konfigurace tvé postavy</h1>
+        <p>Tvým prvním úkolem bude vybrat si základní vlastnosti tvého hrdiny/ky. 😈</p>
+        <form method="post">
+            <p>Vyber pohlaví, které preferuješ:</p>
+            <input type="radio" <!--asp-for="Stats.PreferedGender" value="@GenderMode.Both"--> Obojí<br />
+            <input type="radio" <!--asp-for="PreferedGender" value="@GenderMode.Men"--> Muži<br />
+            <input type="radio" <!--asp-for="PreferedGender" value="@GenderMode.Women"--> Ženy<br />
+            <button asp-page="/Room">Pokračovat</button>
+        </form>
+    </div>
+</body>
+</html>

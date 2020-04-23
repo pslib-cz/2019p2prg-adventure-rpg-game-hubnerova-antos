@@ -1,0 +1,26 @@
+@page
+@model RPG_game.Pages.MoonbucksModel
+@{
+    ViewData["Title"] = "Moonbucks";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Moonbucks</title>
+</head>
+<body>
+    @section Scripts {
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    }
+    <div class="text-center">
+        <h1 class="display-4">Kavárna Moonbucks</h1>
+        <p>Ocitl ses v kavárně, utíkej si vybrat něco ze zdější obsáhlé nabídky nápojů. Za pultem se na tebe usmívá mladý barista 🧑‍💼 (nebo baristka 🧑‍💼?)</p>
+        <form method="post">
+            <button asp-page="/Square">Zpět na náměstí</button>
+        </form>
+    </div>
+</body>
+</html>
