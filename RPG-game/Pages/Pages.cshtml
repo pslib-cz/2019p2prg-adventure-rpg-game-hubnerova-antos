@@ -1,0 +1,29 @@
+@page
+@model RPG_game.Pages.PagesModel
+@using RPG_game.Model
+@{
+    ViewData["Title"] = "Pages";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Pages</title>
+</head>
+<body>
+    @section Scripts {
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    }
+    <div class="text-center">
+        <h1 class="display-4">
+            --název místnosti--
+        </h1>
+        <p>Vítej. Účelem této hry je zlepšit tvou úroveň v seznamování se. A když ne to, tak tě alespoň na chvíli zabavit. Přejeme mnoho štěstí! </p>
+        <form method="post">
+            <button asp-page="/Pages">Začít hru!</button>
+        </form>
+    </div>
+</body>
+</html>
