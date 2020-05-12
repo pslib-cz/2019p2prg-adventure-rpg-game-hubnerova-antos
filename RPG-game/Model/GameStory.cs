@@ -29,21 +29,4 @@ namespace RPG_game.Model
             Locations.Add(80, new Location() { Name = "Taneční klub Milimetr", Description = "...", Paths = { new Path() { PathId = 0, PathDescription = "Zpět na náměstí", NextLocationId = 10 } } });
         }
     }
-
-    public class Location
-    {
-        public string Name { get; set; }
-        public string Description { get; set; }
-        public bool IsLocked { get; set; }
-        public List<Path> Paths { get; set; }
-
-    }
-
-
-    public class Path
-    {
-        public int PathId { get; set; }
-        public string PathDescription { get; set; }
-        public int NextLocationId { get; set; }
-    }
 }
