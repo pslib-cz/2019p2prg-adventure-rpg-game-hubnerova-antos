@@ -17,7 +17,7 @@ namespace RPG_game.Services
         public Location Play()
         {
             int? id = _session.GetLocationId();
-            if (id == null)
+            if (id == null || id == 0)
             {
                 return _gamestory.Locations[1];
             }
