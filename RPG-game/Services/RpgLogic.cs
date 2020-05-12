@@ -16,10 +16,10 @@ namespace RPG_game.Services
 
         public Location Play()
         {
-            int? id = _session.GetRoomId();
+            int? id = _session.GetLocationId();
             if (id == null)
             {
-                return _gamestory.Locations[0];
+                return _gamestory.Locations[1];
             }
             else
             {

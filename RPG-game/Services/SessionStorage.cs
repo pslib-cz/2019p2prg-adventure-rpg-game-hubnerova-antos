@@ -1,12 +1,16 @@
 ﻿using System;
 using Microsoft.AspNetCore.Http;
+using RPG_game.Model;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace RPG_game.Services
 {
     public class SessionStorage
     {
         readonly ISession _session;
-        const string KEY = "LOCATIONID";
+        const string KEY = "ROOMID";
 
         public SessionStorage(IHttpContextAccessor hce)
         {
@@ -16,11 +20,6 @@ namespace RPG_game.Services
         public void SetLocationId(int number)
         {
             _session.SetInt32(KEY, number);
-        }
-
-        internal int? GetRoomId()
-        {
-            throw new NotImplementedException();
         }
 
         public int? GetLocationId()

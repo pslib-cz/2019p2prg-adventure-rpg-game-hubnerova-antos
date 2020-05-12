@@ -12,8 +12,19 @@ namespace RPG_game.Pages
 {
     public class IndexModel : PageModel
     {
+        public Location Location { get; set; }
+        private readonly RpgLogic _rpglogic;
+        private readonly SessionStorage _session;
+
+        public IndexModel(RpgLogic rpglogic, SessionStorage session)
+        {
+            _rpglogic = rpglogic;
+            _session = session;
+        }
+
         public void OnGet()
         {
+            Location = _rpglogic.Play();
         }
     }
 }

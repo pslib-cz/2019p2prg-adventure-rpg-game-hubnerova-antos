@@ -59,9 +59,8 @@ namespace RPG_game
             app.UseStaticFiles();
 
             app.UseRouting();
-
             app.UseAuthorization();
-
+            app.UseSession();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapRazorPages();

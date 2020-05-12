@@ -12,8 +12,8 @@ namespace RPG_game.Pages
     public class PagesModel : PageModel
     {
         public Location Location { get; set; }
-        public RpgLogic _rpglogic;
-        public SessionStorage _session;
+        private readonly RpgLogic _rpglogic;
+        private readonly SessionStorage _session;
 
         public PagesModel(RpgLogic rpglogic, SessionStorage session)
         {
@@ -21,9 +21,9 @@ namespace RPG_game.Pages
             _session = session;
         }
 
-        public void OnGet(int id)
+        public void OnGet(int to)
         {
-            _session.SetLocationId(id);
+            _session.SetLocationId(to);
             Location = _rpglogic.Play();
         }
     }
