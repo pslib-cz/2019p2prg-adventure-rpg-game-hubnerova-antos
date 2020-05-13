@@ -11,6 +11,7 @@ namespace RPG_game.Services
     {
         readonly ISession _session;
         const string KEY = "LOCATIONID";
+        const string LEVELKEY = "LEVELID";
 
         public SessionStorage(IHttpContextAccessor hce)
         {
@@ -25,6 +26,22 @@ namespace RPG_game.Services
         public int? GetLocationId()
         {
             return _session.GetInt32(KEY);
+        }
+
+        public void SetLevel(int level)
+        {
+            _session.SetInt32(LEVELKEY, level);
+        }
+
+        public int? GetLevel()
+        {
+            return _session.GetInt32(LEVELKEY);
+        }
+
+        public void LevelUP()
+        {
+            int? level = _session.GetInt32(LEVELKEY);
+            _session.SetInt32(LEVELKEY, level.GetValueOrDefault()+1);
         }
     }
 }

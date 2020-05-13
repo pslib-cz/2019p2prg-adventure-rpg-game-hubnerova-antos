@@ -13,8 +13,10 @@ namespace RPG_game.Pages
     public class IndexModel : PageModel
     {
         public Location Location { get; set; }
-        private readonly RpgLogic _rpglogic;
-        private readonly SessionStorage _session;
+        public RpgLogic _rpglogic;
+        public SessionStorage _session;
+        public int? level { get; set; }
+        
 
         public IndexModel(RpgLogic rpglogic, SessionStorage session)
         {
@@ -25,6 +27,8 @@ namespace RPG_game.Pages
         public void OnGet()
         {
             Location = _rpglogic.Play();
+            _session.SetLevel(0);
+            level = _session.GetLevel();
         }
     }
 }

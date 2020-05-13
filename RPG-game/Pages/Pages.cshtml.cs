@@ -14,6 +14,7 @@ namespace RPG_game.Pages
         public Location Location { get; set; }
         public RpgLogic _rpglogic;
         public SessionStorage _session;
+        public int? level;
 
         public PagesModel(RpgLogic rpglogic, SessionStorage session)
         {
@@ -25,6 +26,8 @@ namespace RPG_game.Pages
         {
             _session.SetLocationId(to);
             Location = _rpglogic.Play();
+            _session.LevelUP();
+            level = _session.GetLevel();
         }
     }
 }
