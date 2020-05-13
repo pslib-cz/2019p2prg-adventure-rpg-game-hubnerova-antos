@@ -14,7 +14,8 @@ namespace RPG_game.Pages
         public Location Location { get; set; }
         public RpgLogic _rpglogic;
         public SessionStorage _session;
-        public int? level;
+        public int? Level;
+        public int? DateCount;
 
         public PagesModel(RpgLogic rpglogic, SessionStorage session)
         {
@@ -24,10 +25,11 @@ namespace RPG_game.Pages
 
         public void OnGet(int to)
         {
+            if (to == 5) _session.LevelUp();
             _session.SetLocationId(to);
             Location = _rpglogic.Play();
-            _session.LevelUP();
-            level = _session.GetLevel();
+            Level = _session.GetLevel();
+            DateCount = _session.GetDateCount();
         }
     }
 }

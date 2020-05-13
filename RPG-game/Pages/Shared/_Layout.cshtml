@@ -18,10 +18,15 @@
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex">
                     <div class="navbar-nav">
-                            <a class="nav-item nav-link text-dark" asp-area="" asp-page="/Index">Začít znovu</a>
-                            <a class="nav-item nav-link text-dark">Tvůj level: @Model.level</a>
+                        <a class="nav-item nav-link text-dark" asp-area="" asp-page="/Index">Začít znovu</a>
+                        <!--<a class="nav-item nav-link">Tvůj level: @Model.Level</a>
+    <a class="nav-item nav-link">Počet schůzek: @Model.DateCount</a>-->
                     </div>
                 </div>
+                <span class="navbar-text">
+                    Tvůj level: @Model.Level<br />
+                    Počet schůzek: @Model.DateCount
+                </span>
             </div>
         </nav>
     </header>
