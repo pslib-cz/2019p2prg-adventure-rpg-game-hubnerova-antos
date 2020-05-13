@@ -12,8 +12,8 @@ namespace RPG_game.Pages
     public class PagesModel : PageModel
     {
         public Location Location { get; set; }
-        private readonly RpgLogic _rpglogic;
-        private readonly SessionStorage _session;
+        public RpgLogic _rpglogic;
+        public SessionStorage _session;
 
         public PagesModel(RpgLogic rpglogic, SessionStorage session)
         {

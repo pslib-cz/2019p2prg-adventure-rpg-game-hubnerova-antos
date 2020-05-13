@@ -10,7 +10,7 @@ namespace RPG_game.Services
     public class SessionStorage
     {
         readonly ISession _session;
-        const string KEY = "ROOMID";
+        const string KEY = "LOCATIONID";
 
         public SessionStorage(IHttpContextAccessor hce)
         {

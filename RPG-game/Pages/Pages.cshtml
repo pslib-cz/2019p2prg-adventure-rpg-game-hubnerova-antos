@@ -17,12 +17,13 @@
         @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
     }
     <div class="text-center">
-        <h1 class="display-4">
-        </h1>
-        <p>Vítej. Účelem této hry je zlepšit tvou úroveň v seznamování se. A když ne to, tak tě alespoň na chvíli zabavit. Přejeme mnoho štěstí! </p>
-        <form method="post">
-            <button asp-page="/Pages">Začít hru!</button>
-        </form>
-    </div>
+        <h1 class="display-4">@Model.Location.Name</h1>
+        <p>@Model.Location.Description</p>
+            @foreach (var item in Model.Location.Paths)
+            {
+                <a asp-page="/Pages" asp-route-to="@item.NextLocationId" class="btn btn-primary">@item.PathDescription</a>
+                <script>console.log(@item.NextLocationId)</script>
+            }
+        </div>
 </body>
 </html>
