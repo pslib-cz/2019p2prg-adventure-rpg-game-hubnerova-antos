@@ -19,11 +19,19 @@
     <div class="text-center">
         <h1 class="display-4">@Model.Location.Name</h1>
         <p>@Model.Location.Description</p>
+        <div class="btn-group-vertical">
             @foreach (var item in Model.Location.Paths)
             {
-                <a asp-page="/Pages" asp-route-to="@item.NextLocationId" class="btn btn-primary">@item.PathDescription</a>
-                <script>console.log(@item.NextLocationId)</script>
+                if (item.IsLocked == true)
+                {
+                    <a class="btn btn-secondary disabled">@item.PathDescription</a>
+                }
+                else
+                {
+                    <a asp-page="/Pages" asp-route-to="@item.NextLocationId" class="btn btn-secondary">@item.PathDescription</a>
+                }
             }
         </div>
+    </div>
 </body>
 </html>
