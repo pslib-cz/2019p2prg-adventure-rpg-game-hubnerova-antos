@@ -53,7 +53,7 @@ namespace RPG_game.Model
             Locations.Add(202, new Location() { Name = "Park Cestovatelů", Description = "Pomáháš malé holčičce chytit míč, už ho skoro máš, ale omylem na něj šlápneš a on praskne. Holčička pláče, její rodiče tě zabíjí pohledem a ty se snažíš být neviditelný.", Paths = new List<Path> { new Path() { PathId = 0, PathDescription = "Vzít nohy na ramena a utéct z Parku", NextLocationId = 6 } } });
             Locations.Add(203, new Location() { Name = "Park Cestovatelů", Description = "Jakmile se příblížíš k Havlovi, vidíš že není tak šílený, jak to zpovzdálí vypadlo. Jen stále něco hledá a točí se okolo lavičky jako šílenec.", Paths = new List<Path> { new Path() { PathId = 0, PathDescription = "Zeptat se, co hledá", NextLocationId = 204 } } });
             Locations.Add(204, new Location() { Name = "Park Cestovatelů", Description = "Havel odpovídá na tvoji otázku: \"Tož ty omladino, já jsem tu ztratil moje okuláry.\", ty mu je samozřejmé pomáháš hledat a po chvíli je v trávě skutečně objevíš. \"Já je tu marně hledal 20 let a ty je najdeš hned. Jak se ti mohu odvděčit?\" povídá Havel", Paths = new List<Path> { new Path() { PathId = 0, PathDescription = "Svěřit se tomuto chápavému důchodci se svými problémy", NextLocationId = 205 } } });
-            Locations.Add(205, new Location() { Name = "Park Cestovatelů", Description = "Důchodce Škrlík vyslech všechny tvé problémy a povídá: \"To já byl zamlada neodolatelný díky jednomu místu, kde se randilo jak po másle, řeknu ti kde to je. 🤪\" a řekně ti kde přesně tento rybík najdeš.", PathToUnlock =  new PathToUnlock() { LocationId = 200, PathId = 1 }, Paths = new List<Path> { new Path() { PathId = 0, PathDescription = "Poděkovat mu za cennou informaci odejít", NextLocationId = 5 } } });
+            Locations.Add(205, new Location() { Name = "Park Cestovatelů", Description = "Důchodce Škrlík vyslech všechny tvé problémy a povídá: \"To já byl zamlada neodolatelný díky jednomu místu, kde se randilo jak po másle, řeknu ti kde to je. 🤪\" a řekně ti kde přesně tento rybík najdeš.", PathToLock = new PathToLock() { LocationId = 201, PathId = 1 }, PathToUnlock =  new PathToUnlock() { LocationId = 200, PathId = 1 }, Paths = new List<Path> { new Path() { PathId = 0, PathDescription = "Poděkovat mu za cennou informaci odejít", NextLocationId = 5 } } });
             Locations.Add(206, new Location() { Name = "Park Cestovatelů", Description = "Jelikož tvé herecké schopnosti nejsou zrovna na Hollywood, tak u dětí spíše místo smíchu převládají slzy. 🙂", Paths = new List<Path> { new Path() { PathId = 0, PathDescription = "Zahanbeně odejít", NextLocationId = 6 } } });
             Locations.Add(210, new Location() { Name = "Rybník", Description = "Balící místo", Paths = new List<Path> { new Path() { PathId = 0, PathDescription = "Do parku", NextLocationId = 200 } } });
 
@@ -76,6 +76,7 @@ namespace RPG_game.Model
         public string Name { get; set; }
         public string Description { get; set; }
         public List<Path> Paths { get; set; }
+        public PathToLock PathToLock { get; set; }
         public PathToUnlock PathToUnlock { get; set; }
     }
 
@@ -86,6 +87,12 @@ namespace RPG_game.Model
         public bool IsLocked { get; set; }
         public int NextLocationId { get; set; }
 
+    }
+
+    public class PathToLock
+    {
+        public int LocationId { get; set; }
+        public int PathId { get; set; }
     }
 
     public class PathToUnlock

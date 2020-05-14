@@ -30,6 +30,14 @@ namespace RPG_game.Pages
             Location = _rpglogic.Play();
             Level = _session.GetLevel();
             DateCount = _session.GetDateCount();
+            if (this.Location.PathToLock != null)
+            {
+                _rpglogic.LockPath(this.Location.PathToLock.LocationId, this.Location.PathToLock.PathId);
+            }
+            if (this.Location.PathToUnlock != null)
+            {
+                _rpglogic.UnlockPath(this.Location.PathToUnlock.LocationId, this.Location.PathToUnlock.PathId);
+            }
         }
     }
 }

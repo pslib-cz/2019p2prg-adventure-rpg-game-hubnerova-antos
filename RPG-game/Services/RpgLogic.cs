@@ -26,5 +26,15 @@ namespace RPG_game.Services
                 return _gamestory.Locations[id.Value];
             }
         }
+
+        public void UnlockPath(int LocationId, int PathId)
+        {
+            _gamestory.Locations[LocationId].Paths[PathId].IsLocked = false;
+        }
+
+        public void LockPath(int LocationId, int PathId)
+        {
+            _gamestory.Locations[LocationId].Paths[PathId].IsLocked = true;
+        }
     }
 }
