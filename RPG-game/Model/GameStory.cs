@@ -15,6 +15,8 @@ namespace RPG_game.Model
             Locations.Add(3, new Location() { Name = "Pokoj", Description = "Jsi ve svém pokoji, tvůj telefon píše: \"Jdi ven!\"", Paths = new List<Path>() { new Path() { PathId = 0, PathDescription = "Vydat se ven", NextLocationId = 10 } } });
             Locations.Add(4, new Location() { Name = "Pokoj", Description = "Jsi ve svém pokoji.", Paths = new List<Path>() { new Path() { PathId = 0, PathDescription = "Vydat se ven", NextLocationId = 10 } } });
             Locations.Add(5, new Location() { Name = "Nové upozornění", Description = "Telefon: \"Úkol splněn. Tvůj level se zvýšil.\"", Paths = new List<Path>() { new Path() { PathId = 0, PathDescription = "Pokračovat", NextLocationId = 10 } } });
+            Locations.Add(6, new Location() { Name = "Nové upozornění", Description = "Telefon: \"Tento úkol se ti bohužel nepovedl, zkus se na toto místo vrátit později.\"", Paths = new List<Path>() { new Path() { PathId = 0, PathDescription = "Pokračovat", NextLocationId = 10 } } });
+
             //Náměstí (10-19)
             Locations.Add(10, new Location() { Name = "Náměstí", Description = "Přišel jsi na náměstí, můžeš pokračovat několika různými směry. Který si vybereš?", Paths = new List<Path>() { new Path() { PathId = 0, PathDescription = "Zpět do pokoje", NextLocationId = 4 }, new Path() { PathId = 1, PathDescription = "Do kavárny", NextLocationId = 20 }, new Path() { PathId = 2, PathDescription = "Do kadeřnictví", NextLocationId = 100 }, new Path() { PathId = 3, PathDescription = "Do parku", NextLocationId = 200 }, new Path() { PathId = 4, PathDescription = "Do kina", NextLocationId = 300 }, new Path() { PathId = 5, PathDescription = "Do muzea", NextLocationId = 400 }, new Path() { PathId = 6, PathDescription = "Do obchodu", NextLocationId = 500 }, new Path() { PathId = 7, PathDescription = "Do klubu", NextLocationId = 600 } } });
             //Locations.Add(11, new Location() { Name = "Náměstí", Description = "Jsi ve svém pokoji, máš telefon.. a ten píše: Jdi ven!", Paths = new List<Path>() { new Path() { PathId = 0, PathDescription = "Vydat se ven", NextLocationId = 10 } } });
@@ -35,26 +37,29 @@ namespace RPG_game.Model
             Locations.Add(31, new Location() { Name = "Kavárna Moonbucks", Description = "Baristka se na tebe zadívá a po chvilce klidně odpoví.\"Maniela. Užijte si kávu. Nashledanou.\"", Paths = new List<Path>() { new Path() { PathId = 0, PathDescription = "Rozloučit se a odejít", NextLocationId = 10 } } });
 
             //Kadeřnictví (100-199)
-            Locations.Add(100, new Location() { Name = "Kadeřnictví u Zohana", Description = "Zohan a Břetislava Matějková", Paths = new List<Path>() { new Path() {PathId = 0, PathDescription = "Zpět na náměstí", NextLocationId = 10 } } });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+            Locations.Add(100, new Location() { Name = "Kadeřnictví u Zohana", Description = "Nacházíš se v kadeřnictví, na zdi proti tobě je několik fotografií zajímavých účesů, které se teď nosí.", Paths = new List<Path>() { new Path() {PathId = 0, PathDescription = "Zpět na náměstí", NextLocationId = 10 }, new Path() { PathId = 1, PathDescription = "Posadit se do křesla", NextLocationId = 101 } } });
+            // + mobilní aplikace - "nech si udělat nový účet"
+            Locations.Add(101, new Location() { Name = "Nové upozornění", Description = "Telefon: \"Nový úkol - Nechej si udělat nějaký moderní účes, díky kterému budeš přitažlivější pro své okolí.\" ", Paths = new List<Path> { new Path() { PathId = 0, PathDescription = "Nechat se ostříhat od kadeřníka", NextLocationId = 102 }, new Path { PathId = 1, PathDescription = "Nechat se ostříhat od kadeřnice", NextLocationId = 104 } } } );
+            Locations.Add(102, new Location() { Name = "Kadeřnictví u Zohana", Description = "Sedl sis a kadeřník Zohan povídá: \"Dobrý den, jmenuji se Zohan, co uděláme s Vašimi vlasy?\" ", Paths = new List<Path> { new Path() { PathId = 0, PathDescription = "Popsat jaký účes si předtavuješ", NextLocationId = 103 }, new Path { PathId = 1, PathDescription = "Nechat volbu účesu na kadeřníkovi", NextLocationId = 103 } } });
+            Locations.Add(103, new Location() { Name = "WOW... účes se opravdu povedl", Description = "Tvůj nový účes je vážně skvělý, sluší ti to. 😉", Paths = new List<Path> { new Path() { PathId = 0, PathDescription = "Poděkovat, zaplatit a odejít", NextLocationId = 5 } } });
+            Locations.Add(104, new Location() { Name = "Kadeřnictví u Zohana", Description = "Sedl sis a kadeřnice ti s nejistým tónem v hlase povídá: \"Dobrý den, jmenuji se Břetislava, jaký účes si představujete?\" ", Paths = new List<Path> { new Path() { PathId = 0, PathDescription = "Popsat jaký účes si předtavuješ", NextLocationId = 105 }, new Path { PathId = 1, PathDescription = "Nechat volbu účesu na kadeřnici", NextLocationId = 106 } } });
+            Locations.Add(105, new Location() { Name = "Kadeřnictví u Zohana", Description = "Sice to není úplně to, co sis představoval, ale vyloženě ošklivý ten účet také není.", Paths = new List<Path> { new Path() { PathId = 0, PathDescription = "Zaplatit a popřát hodně stěstí", NextLocationId = 5 } } });
+            Locations.Add(106, new Location() { Name = "HRŮZA", Description = "Vypadáš jako oškubané kuře, tvé vlasy jsou ale natolik krátké, že jediná možnost je jen kšiltovka nebo klobouk. 😢", Paths = new List<Path> { new Path() { PathId = 0, PathDescription = "Rozhořčeně se rozloučit a odejít", NextLocationId = 6 } } });
             //Locations.Add()
             //Park (200-299)
-            Locations.Add(200, new Location() { Name = "Park Cestovatelů", Description = "Jsi v parku s Havlem Škrlíkem", Paths = new List<Path>() { new Path() {PathId = 0, PathDescription = "Zpět na náměstí", NextLocationId = 10 } } });
+            Locations.Add(200, new Location() { Name = "Park Cestovatelů", Description = "Jsi v parku, kde tě mezi rodinami s dětmi hned na první pohled zaujal blázen Havel Škrlík.", Paths = new List<Path>() { new Path() {PathId = 0, PathDescription = "Zpět na náměstí", NextLocationId = 10 }, new Path() { PathId = 1, PathDescription = "Jít k rybníku", NextLocationId = 210, IsLocked = true }, new Path() { PathId = 2, PathDescription = "Volně se procházet parkem", NextLocationId = 201 } } });
+            // + mobilní aplikace - "nech si udělat nový účet"
+            Locations.Add(201, new Location() { Name = "Nové upozornění", Description = "Telefon: \"Nový úkol - Zlepši někomu náladu, aby všichni viděli jak máš dobré srdce.\"", Paths = new List<Path> { new Path() { PathId = 0, PathDescription = "Jít za holčičkou, které se odkutálel míč", NextLocationId = 202 }, new Path { PathId = 1, PathDescription = "Přijít blíže k Havlovi", NextLocationId = 203 }, new Path { PathId = 2, PathDescription = "Udělat zábavné vystoupení pro děti", NextLocationId = 206 } } });
+            Locations.Add(202, new Location() { Name = "Park Cestovatelů", Description = "Pomáháš malé holčičce chytit míč, už ho skoro máš, ale omylem na něj šlápneš a on praskne. Holčička pláče, její rodiče tě zabíjí pohledem a ty se snažíš být neviditelný.", Paths = new List<Path> { new Path() { PathId = 0, PathDescription = "Vzít nohy na ramena a utéct z Parku", NextLocationId = 6 } } });
+            Locations.Add(203, new Location() { Name = "Park Cestovatelů", Description = "Jakmile se příblížíš k Havlovi, vidíš že není tak šílený, jak to zpovzdálí vypadlo. Jen stále něco hledá a točí se okolo lavičky jako šílenec.", Paths = new List<Path> { new Path() { PathId = 0, PathDescription = "Zeptat se, co hledá", NextLocationId = 204 } } });
+            Locations.Add(204, new Location() { Name = "Park Cestovatelů", Description = "Havel odpovídá na tvoji otázku: \"Tož ty omladino, já jsem tu ztratil moje okuláry.\", ty mu je samozřejmé pomáháš hledat a po chvíli je v trávě skutečně objevíš. \"Já je tu marně hledal 20 let a ty je najdeš hned. Jak se ti mohu odvděčit?\" povídá Havel", Paths = new List<Path> { new Path() { PathId = 0, PathDescription = "Svěřit se tomuto chápavému důchodci se svými problémy", NextLocationId = 205 } } });
+            Locations.Add(205, new Location() { Name = "Park Cestovatelů", Description = "Důchodce Škrlík vyslech všechny tvé problémy a povídá: \"To já byl zamlada neodolatelný díky jednomu místu, kde se randilo jak po másle, řeknu ti kde to je. 🤪\" a řekně ti kde přesně tento rybík najdeš.", PathToUnlock =  new PathToUnlock() { LocationId = 200, PathId = 1 }, Paths = new List<Path> { new Path() { PathId = 0, PathDescription = "Poděkovat mu za cennou informaci odejít", NextLocationId = 5 } } });
+            Locations.Add(206, new Location() { Name = "Park Cestovatelů", Description = "Jelikož tvé herecké schopnosti nejsou zrovna na Hollywood, tak u dětí spíše místo smíchu převládají slzy. 🙂", Paths = new List<Path> { new Path() { PathId = 0, PathDescription = "Zahanbeně odejít", NextLocationId = 6 } } });
+            Locations.Add(210, new Location() { Name = "Rybník", Description = "Balící místo", Paths = new List<Path> { new Path() { PathId = 0, PathDescription = "Do parku", NextLocationId = 200 } } });
+
+
+
+
             //Kino (300-399)
             Locations.Add(300, new Location() { Name = "Kino Cinnamon", Description = "Nacházíš se v kině, s výběrem filmu ti pomůže Pepa Hřebec, zkus s ním promluvit 🤓", Paths = new List<Path>() { new Path() {PathId = 0, PathDescription = "Zpět na náměstí", NextLocationId = 10 } } });
             //Muzeum (400-499)
@@ -71,6 +76,7 @@ namespace RPG_game.Model
         public string Name { get; set; }
         public string Description { get; set; }
         public List<Path> Paths { get; set; }
+        public PathToUnlock PathToUnlock { get; set; }
     }
 
     public class Path
@@ -80,5 +86,11 @@ namespace RPG_game.Model
         public bool IsLocked { get; set; }
         public int NextLocationId { get; set; }
 
+    }
+
+    public class PathToUnlock
+    {
+        public int LocationId { get; set; }
+        public int PathId { get; set; }
     }
 }
