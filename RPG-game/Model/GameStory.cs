@@ -70,7 +70,16 @@ namespace RPG_game.Model
 
             //Muzeum (400-499)
             Locations.Add(400, new Location() { Name = "Muzeum", Description = "Muzeum...", Paths = new List<Path>() { new Path() { PathId = 0, PathDescription = "Zpět na náměstí", NextLocationId = 10 } } });
-
+            Locations.Add(400, new Location() { Name = "Muzeum", Description = "Vešel jsi do muzea. Doufejme, že se ti tu bude líbit. Protože tu stovku za vstup už ti nikdo nevrátí. U brány ti oznámili, že můžeš počkat na průvodkyni.", Paths = new List<Path>() { new Path() { PathId = 0, PathDescription = "Pokračovat", NextLocationId = 401 } } });
+            // + mobilní aplikace - "rozšiř své vědomostní obzory."
+            Locations.Add(401, new Location() { Name = "Nové upozornění", Description = "Telefon: \"Nový úkol - Nasbírej nové vědomosti. Všichni milují inteligenty.\"", Paths = new List<Path>() { new Path() { PathId = 0, PathDescription = "Počkat na průvodkyni", NextLocationId = 402 }, new Path() { PathId = 1, PathDescription = "Prohlédnout si muzeum na vlatní pěst", NextLocationId = 410 }, new Path() { PathId = 2, PathDescription = "Odejít z muzea", NextLocationId = 10 } } });
+            Locations.Add(402, new Location() { Name = "Muzeum", Description = "Po pár minutách za sebou uslyšíš blížící se kroky. Otočíš se za zvukem. \"To jste tu jenom vy? Máte štěstí, dneska mě máte jenom pro sebe.\" Dívka se afektovaně usměje. \"Dobrý den. Jmenuji se Dina Veselá a dnes budu vaší průvodkyní. Kdykoliv budete mít nějaké dotazy týkající se vystavených aparátů nebo čehokoliv jiného, neváhejte se zeptat. Nyní mě prosím následujte.\"", Paths = new List<Path>() { new Path() { PathId = 0, PathDescription = "Následovat Dinu", NextLocationId = 10 } } });
+            Locations.Add(403, new Location() { Name = "Muzeum", Description = "Čas se vleče a ty pomalu začínáš svých utracených peněz. Dina se sice ze začátku zdála jako fajn partie, teď máš ale co dělat, abys nezíval po každém jejím slově. V tu tvou pozornost upoutá vytáhlý kluk, který se krčí u jedné z vystavených koster. \" Jeho si nevšímejte. Tenhle kluk sem chodí častěji, než uklízečky. Ne, že ty by tu byly nějak často,\" řekne Dina, mračíc se přitom na chuchvalec prachu u její nohy. \"Říkáme mu Kostík, protože nikdo vlastně neví, jak se doopravdy jmenuje.\" ", Paths = new List<Path>() { new Path() { PathId = 0, PathDescription = "Zeptat se na Kostíka", NextLocationId = 404 }, new Path { PathId = 1, PathDescription = "Zeptat se na exponáty", NextLocationId = 405 } } });
+            Locations.Add(404, new Location() { Name = "Muzeum", Description = "", Paths = new List<Path>() { new Path { PathId = 0, PathDescription = "", NextLocationId = } } });
+            Locations.Add(405, new Location() { Name = "Muzeum", Description = "", Paths = new List<Path>() { new Path { PathId = 0, PathDescription = "", NextLocationId = } } });
+            Locations.Add(406, new Location() { Name = "Muzeum", Description = "", Paths = new List<Path>() { new Path { PathId = 0, PathDescription = "", NextLocationId = } } });
+            Locations.Add(407, new Location() { Name = "Muzeum", Description = "", Paths = new List<Path>() { new Path { PathId = 0, PathDescription = "", NextLocationId = } } });
+            //Supermarket (500-599)
             //Supermarket (500-599)
             Locations.Add(500, new Location() { Name = "Supermarket Oliplus", Description = "Obchod", Paths = new List<Path>() { new Path() { PathId = 0, PathDescription = "Zpět na náměstí", NextLocationId = 10 } } });
 
