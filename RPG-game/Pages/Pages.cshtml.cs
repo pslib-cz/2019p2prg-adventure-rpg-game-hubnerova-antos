@@ -25,11 +25,11 @@ namespace RPG_game.Pages
 
         public void OnGet(int to)
         {
-            if (to == 5) _session.LevelUp();
             _session.SetLocationId(to);
             Location = _rpglogic.Play();
             Level = _session.GetLevel();
             DateCount = _session.GetDateCount();
+            if (this.Location.LevelUp == true) _session.LevelUp();
             if (this.Location.PathToLock != null)
             {
                 _rpglogic.LockPath(this.Location.PathToLock.LocationId, this.Location.PathToLock.PathId);
