@@ -38,6 +38,10 @@ namespace RPG_game.Pages
             {
                 _rpglogic.UnlockPath(this.Location.PathToUnlock.LocationId, this.Location.PathToUnlock.PathId);
             }
+            if (this.Location.RedirectPath != null)
+            {
+                _rpglogic.RedirectPath(this.Location.RedirectPath.LocationId, this.Location.RedirectPath.PathId, this.Location.RedirectPath.NewNextLocationId);
+            }
         }
     }
 }

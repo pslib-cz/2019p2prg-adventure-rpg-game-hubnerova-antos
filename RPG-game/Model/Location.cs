@@ -11,5 +11,6 @@ namespace RPG_game.Model
         public LocationPath PathToLock { get; set; }
         public LocationPath PathToUnlock { get; set; }
         public bool LevelUp { get; set; }
+        public RedirectPath RedirectPath { get; set; }
     }
 }

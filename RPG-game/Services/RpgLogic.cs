@@ -36,5 +36,10 @@ namespace RPG_game.Services
         {
             _gamestory.Locations[LocationId].Paths[PathId].IsLocked = true;
         }
+
+        public void RedirectPath(int LocationId, int PathId, int NewNextLocationId)
+        {
+            _gamestory.Locations[LocationId].Paths[PathId].NextLocationId = NewNextLocationId;
+        }
     }
 }
