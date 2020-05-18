@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 using System;
 using System.Collections.Generic;
 
@@ -7,6 +8,19 @@ namespace RPG_game.Model
     public class GameStory
     {
         public Dictionary<int, Location> Locations = new Dictionary<int, Location>();
+
+        public int GetRandom(int[] array)
+        {
+            Random random = new Random();
+            int start2 = random.Next(0, array.Length);
+            return array[start2];
+        }
+
+        int[] options = { 103, 105, 106 };
+
+
+
+
         public GameStory()
         {
             //Startup, konfigurace postavy (1-9)
@@ -41,9 +55,9 @@ namespace RPG_game.Model
             Locations.Add(100, new Location() { Name = "Kadeřnictví u Zohana", Description = "Nacházíš se v kadeřnictví, na zdi proti tobě je několik fotografií zajímavých účesů, které se teď nosí.", Paths = new List<Path>() { new Path() { PathId = 0, PathDescription = "Zpět na náměstí", NextLocationId = 10 }, new Path() { PathId = 1, PathDescription = "Posadit se do křesla", NextLocationId = 101 } } });
             // + mobilní aplikace - "nech si udělat nový účes"
             Locations.Add(101, new Location() { Name = "Nové upozornění", Description = "Telefon: \"Nový úkol - Nechej si udělat nějaký moderní účes, díky kterému budeš přitažlivější pro své okolí.\" ", Paths = new List<Path> { new Path() { PathId = 0, PathDescription = "Nechat se ostříhat od kadeřníka", NextLocationId = 102 }, new Path { PathId = 1, PathDescription = "Nechat se ostříhat od kadeřnice", NextLocationId = 104 } } });
-            Locations.Add(102, new Location() { Name = "Kadeřnictví u Zohana", Description = "Sedl sis a kadeřník Zohan povídá: \"Dobrý den, jmenuji se Zohan, co uděláme s Vašimi vlasy?\" ", Paths = new List<Path> { new Path() { PathId = 0, PathDescription = "Popsat jaký účes si předtavuješ", NextLocationId = 103 }, new Path { PathId = 1, PathDescription = "Nechat volbu účesu na kadeřníkovi", NextLocationId = 103 } } });
+            Locations.Add(102, new Location() { Name = "Kadeřnictví u Zohana", Description = "Sedl sis a kadeřník Zohan povídá: \"Dobrý den, jmenuji se Zohan, co uděláme s Vašimi vlasy?\" ", Paths = new List<Path> { new Path() { PathId = 0, PathDescription = "Popsat jaký účes si předtavuješ", NextLocationId = GetRandom(new[] { 103,105,106}) }, new Path { PathId = 1, PathDescription = "Nechat volbu účesu na kadeřníkovi", NextLocationId = GetRandom(options) } } });
             Locations.Add(103, new Location() { Name = "WOW... účes se opravdu povedl", Description = "Tvůj nový účes je vážně skvělý, sluší ti to. 😉", Paths = new List<Path> { new Path() { PathId = 0, PathDescription = "Poděkovat, zaplatit a odejít", NextLocationId = 5 } } });
-            Locations.Add(104, new Location() { Name = "Kadeřnictví u Zohana", Description = "Sedl sis a kadeřnice ti s nejistým tónem v hlase povídá: \"Dobrý den, jmenuji se Břetislava, jaký účes si představujete?\" ", Paths = new List<Path> { new Path() { PathId = 0, PathDescription = "Popsat jaký účes si předtavuješ", NextLocationId = 105 }, new Path { PathId = 1, PathDescription = "Nechat volbu účesu na kadeřnici", NextLocationId = 106 } } });
+            Locations.Add(104, new Location() { Name = "Kadeřnictví u Zohana", Description = "Sedl sis a kadeřnice ti s nejistým tónem v hlase povídá: \"Dobrý den, jmenuji se Břetislava, jaký účes si představujete?\" ", Paths = new List<Path> { new Path() { PathId = 0, PathDescription = "Popsat jaký účes si předtavuješ", NextLocationId = GetRandom(options) }, new Path { PathId = 1, PathDescription = "Nechat volbu účesu na kadeřnici", NextLocationId = GetRandom(options) } } });
             Locations.Add(105, new Location() { Name = "Kadeřnictví u Zohana", Description = "Sice to není úplně to, co sis představoval, ale vyloženě ošklivý ten účet také není.", Paths = new List<Path> { new Path() { PathId = 0, PathDescription = "Zaplatit a popřát hodně stěstí", NextLocationId = 5 } } });
             Locations.Add(106, new Location() { Name = "HRŮZA", Description = "Vypadáš jako oškubané kuře, tvé vlasy jsou ale natolik krátké, že jediná možnost je jen kšiltovka nebo klobouk. 😢", Paths = new List<Path> { new Path() { PathId = 0, PathDescription = "Rozhořčeně se rozloučit a odejít", NextLocationId = 6 } } });
             //Locations.Add()
