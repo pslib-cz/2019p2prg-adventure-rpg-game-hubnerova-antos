@@ -12,9 +12,11 @@ namespace RPG_game.Model
         public int GetRandom(int[] array)
         {
             Random random = new Random();
-            int start2 = random.Next(0, array.Length);
-            return array[start2];
+            int start = random.Next(0, array.Length);
+            return array[start];
         }
+
+
 
         int[] options = { 103, 105, 106 };
 

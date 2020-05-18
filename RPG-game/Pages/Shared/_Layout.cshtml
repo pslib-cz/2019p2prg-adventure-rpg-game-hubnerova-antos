@@ -19,6 +19,17 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex">
                     <div class="navbar-nav">
                         <a class="nav-item nav-link text-dark" asp-area="" asp-page="/Index">Začít znovu</a>
+                        <div class="dropdown">
+                            <button class="btn bg-transparent dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Známí
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                @foreach (string i in Model.Acquaintances)
+                                {
+                                <a class="dropdown-item" href="#">Model.Acquaintances[i]</a>
+                                }
+                            </div>
+                        </div>
                         <!--<a class="nav-item nav-link">Tvůj level: @Model.Level</a>
     <a class="nav-item nav-link">Počet schůzek: @Model.DateCount</a>-->
                     </div>

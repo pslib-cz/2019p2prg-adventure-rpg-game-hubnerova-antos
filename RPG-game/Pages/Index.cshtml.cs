@@ -17,7 +17,9 @@ namespace RPG_game.Pages
         public SessionStorage _session;
         public int? Level { get; set; }
         public int? DateCount { get; set; }
-        
+
+        public List<string> Acquaintances {get; set;}
+
 
         public IndexModel(RpgLogic rpglogic, SessionStorage session)
         {
