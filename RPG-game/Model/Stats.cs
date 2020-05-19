@@ -7,10 +7,15 @@ namespace RPG_game.Model
     {
         //public GenderMode PreferedGender { get; set; }
         //public string Name { get; }
-        public int? DateCount { get; set; }
-        public int? Level { get; set; }
+        public int DateCount { get; set; }
+        public int Level { get; set; }
 
-        public List<string> Acquaintances { get; set; }
+        public Dictionary<String, Person> Acquaintances = new Dictionary<String, Person>();
+
+        public Stats()
+        {
+            //Acquaintances.Add(new Person() { Name = "Dina Veselá", Age = 30, LocationId = 200});
+        }
         //public int RelationshipLevel { get; set; }
         //public int IntelligenceLevel { get; set; }
         //public int CreativityLevel { get; set; }
