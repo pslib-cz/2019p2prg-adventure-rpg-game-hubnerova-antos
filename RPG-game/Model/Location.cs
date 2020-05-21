@@ -13,5 +13,6 @@ namespace RPG_game.Model
         public bool LevelUp { get; set; }
         public List<RedirectPath> RedirectPaths { get; set; }
         public Person Person { get; set; }
+        public bool DateAllowed { get; set; }
     }
 }

@@ -27,7 +27,14 @@
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                 @foreach (KeyValuePair<string, Person> item in Model.Acquaintances)
                                 {
-                                    <a class="dropdown-item" asp-page = "/Pages" asp-route-to="@item.Value.LocationId" >@item.Value.Name @if(@item.Value.Age != 0) @item.Value.Age </a>
+                                    if (Model.Location.DateAllowed == true)
+                                    {
+                                        <a class="dropdown-item" asp-page="/Pages" asp-route-to="@item.Value.LocationId">@item.Value.Name @if (@item.Value.Age != 0)@item.Value.Age </a>
+                                    }
+                                    else
+                                    {
+                                        <a class="dropdown-item">@item.Value.Name @if (@item.Value.Age != 0)@item.Value.Age </a>
+                                    }
                                 }
                             </div>
                         </div>
