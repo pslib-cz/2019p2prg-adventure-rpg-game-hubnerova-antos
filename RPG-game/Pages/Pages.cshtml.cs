@@ -11,7 +11,7 @@ namespace RPG_game.Pages
 {
     public class PagesModel : PageModel
     {
-        public Location Location { get; set; }
+        public Location Location { get; set; }
         public RpgLogic _rpglogic;
         public SessionStorage _session;
         public StatsLogic _stats;
@@ -36,8 +36,11 @@ namespace RPG_game.Pages
             if (this.Location.LevelUp == true) _stats.LevelUp();
             if (this.Location.PathToLock != null) _rpglogic.LockPath(this.Location.PathToLock.LocationId, this.Location.PathToLock.PathId);
             if (this.Location.PathToUnlock != null) _rpglogic.UnlockPath(this.Location.PathToUnlock.LocationId, this.Location.PathToUnlock.PathId);
-            if (this.Location.RedirectPath != null) _rpglogic.RedirectPath(this.Location.RedirectPath.LocationId, this.Location.RedirectPath.PathId, this.Location.RedirectPath.NewNextLocationId);
             if (this.Location.Person != null) _stats.AddPerson(this.Location.Person);
+            if (this.Location.RedirectPaths != null)
+            {
+                foreach (RedirectPath item in this.Location.RedirectPaths) _rpglogic.RedirectPath(item.LocationId, item.PathId, item.NewNextLocationId);
+            }
         }
     }
 }
