@@ -14,5 +14,6 @@ namespace RPG_game.Model
         public List<RedirectPath> RedirectPaths { get; set; }
         public Person Person { get; set; }
         public bool DateAllowed { get; set; }
+        public bool DateCountUp { get; set; }
     }
 }
