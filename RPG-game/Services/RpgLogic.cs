@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using RPG_game.Model;
 
 namespace RPG_game.Services
@@ -40,6 +41,15 @@ namespace RPG_game.Services
         public void RedirectPath(int LocationId, int PathId, int NewNextLocationId)
         {
             _gamestory.Locations[LocationId].Paths[PathId].NextLocationId = NewNextLocationId;
+        }
+
+        public void RedirectPaths (Dictionary<int, LocationPath> RedirectPaths, int NewNextLocationId)
+        {
+            foreach (KeyValuePair<int, LocationPath> item in RedirectPaths)
+            {
+                _gamestory.Locations[item.Value.LocationId].Paths[item.Value.PathId].NextLocationId = NewNextLocationId;
+            }
+            
         }
     }
 }
