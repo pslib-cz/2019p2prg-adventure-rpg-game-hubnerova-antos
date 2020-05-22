@@ -21,6 +21,11 @@ namespace RPG_game.Services
         public SessionStorage(IHttpContextAccessor hce)
         {
             _session = hce.HttpContext.Session;
+            if (_session.Get<GameStory>(GAMESTORYKEY) == null && _session.Get<Stats>(STATSKEY) == null)
+            {
+                _session.Set(GAMESTORYKEY, new GameStory());
+                _session.Set(STATSKEY, new Stats());
+            }
             GameStory = _session.Get<GameStory>(GAMESTORYKEY);
             Stats = _session.Get<Stats>(STATSKEY);
         }
@@ -28,7 +33,7 @@ namespace RPG_game.Services
         //LocationId
         public void SetLocationId(int number)
         {
-            _session.SetInt32(KEY, number);
+            if (number != 0) _session.SetInt32(KEY, number);
         }
 
         public int? GetLocationId()
@@ -41,9 +46,19 @@ namespace RPG_game.Services
             _session.Set(STATSKEY, this.Stats);
         }
 
+        /*public void SetStats(Stats stats)
+        {
+            _session.Set(STATSKEY, stats);
+        }*/
+
         public void SaveGameStory()
         {
             _session.Set(GAMESTORYKEY, this.GameStory);
         }
+
+        /*public void SetGameStory(GameStory gameStory)
+        {
+            _session.Set(GAMESTORYKEY, gameStory);
+        }*/
     }
 }

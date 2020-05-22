@@ -7,24 +7,27 @@ namespace RPG_game.Services
     public class RpgLogic
     {
         readonly SessionStorage _session;
+        public GameStory _gamestory;
 
         public RpgLogic(SessionStorage session)
         {
             _session = session;
+            _gamestory = _session.GameStory;
         }
 
         public Location Play()
         {
             int? id = _session.GetLocationId();
             Location location;
-            if (id == null || id == 0)
+            /*if (id == null || id == 0)
             {
                 location = _session.GameStory.Locations[1];
             }
             else
             {
                 location = _session.GameStory.Locations[id.Value];
-            }
+            }*/
+            location = _session.GameStory.Locations[id.Value];
             if (location.LevelUp == true) this.LevelUp();
             if (location.DateCountUp == true) this.DateCountUp();
             if (location.PathToLock != null) this.LockPath(location.PathToLock.LocationId, location.PathToLock.PathId);
