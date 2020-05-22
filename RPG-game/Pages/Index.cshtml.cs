@@ -29,7 +29,7 @@ namespace RPG_game.Pages
         public void OnGet()
         {
             _session.SetLocationId(1);
-            //Location = _rpglogic.Play();
+            Location = _rpglogic.Play();
             Acquaintances = _rpglogic.GetStats();
             Level = _rpglogic.GetLevel();
             DateCount = _rpglogic.GetDateCount();
