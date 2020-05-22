@@ -14,34 +14,23 @@ namespace RPG_game.Pages
         public Location Location { get; set; }
         public RpgLogic _rpglogic;
         public SessionStorage _session;
-        public StatsLogic _stats;
         public Dictionary<String, Person> Acquaintances { get; set; }
         public int? Level;
         public int? DateCount;
 
-        public PagesModel(RpgLogic rpglogic, SessionStorage session, StatsLogic stats)
+        public PagesModel(RpgLogic rpglogic, SessionStorage session)
         {
             _rpglogic = rpglogic;
             _session = session;
-            _stats = stats;
         }
 
         public void OnGet(int to)
         {
             _session.SetLocationId(to);
             Location = _rpglogic.Play();
-            Acquaintances = _stats.GetStats();
-            Level = _stats.GetLevel();
-            DateCount = _stats.GetDateCount();
-            if (this.Location.LevelUp == true) _stats.LevelUp();
-            if (this.Location.DateCountUp == true) _stats.DateCountUp();
-            if (this.Location.PathToLock != null) _rpglogic.LockPath(this.Location.PathToLock.LocationId, this.Location.PathToLock.PathId);
-            if (this.Location.PathToUnlock != null) _rpglogic.UnlockPath(this.Location.PathToUnlock.LocationId, this.Location.PathToUnlock.PathId);
-            if (this.Location.Person != null) _stats.AddPerson(this.Location.Person);
-            if (this.Location.RedirectPaths != null)
-            {
-                foreach (RedirectPath item in this.Location.RedirectPaths) _rpglogic.RedirectPath(item.LocationId, item.PathId, item.NewNextLocationId);
-            }
+            Acquaintances = _rpglogic.GetStats();
+            Level = _rpglogic.GetLevel();
+            DateCount = _rpglogic.GetDateCount();
         }
     }
 }

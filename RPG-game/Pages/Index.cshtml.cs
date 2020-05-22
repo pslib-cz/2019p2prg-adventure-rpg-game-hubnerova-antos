@@ -15,25 +15,23 @@ namespace RPG_game.Pages
         public Location Location { get; set; }
         public RpgLogic _rpglogic;
         public SessionStorage _session;
-        public StatsLogic _stats;
         public Dictionary<String, Person> Acquaintances { get; set; }
         public int? Level { get; set; }
         public int? DateCount { get; set; }
 
 
-        public IndexModel(RpgLogic rpglogic, SessionStorage session, StatsLogic stats)
+        public IndexModel(RpgLogic rpglogic, SessionStorage session)
         {
             _rpglogic = rpglogic;
             _session = session;
-            _stats = stats;
         }
 
         public void OnGet()
         {
             Location = _rpglogic.Play();
-            Acquaintances = _stats.GetStats();
-            Level = _stats.GetLevel();
-            DateCount = _stats.GetDateCount();
+            Acquaintances = _rpglogic.GetStats();
+            Level = _rpglogic.GetLevel();
+            DateCount = _rpglogic.GetDateCount();
         }
     }
 }
