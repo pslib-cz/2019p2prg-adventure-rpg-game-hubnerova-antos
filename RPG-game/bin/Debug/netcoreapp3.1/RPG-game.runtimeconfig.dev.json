@@ -1,8 +1,0 @@
-{
-  "runtimeOptions": {
-    "additionalProbingPaths": [
-      "/Users/adamantos/.dotnet/store/|arch|/|tfm|",
-      "/Users/adamantos/.nuget/packages"
-    ]
-  }
-}
