@@ -23,7 +23,7 @@ namespace RPG_game.Services
             _session = hce.HttpContext.Session;
             if (_session.Get<GameStory>(GAMESTORYKEY) == null && _session.Get<Stats>(STATSKEY) == null)
             {
-                _session.Set(GAMESTORYKEY, new GameStory());
+                _session.Set(GAMESTORYKEY, new GameStory(new Random()));
                 _session.Set(STATSKEY, new Stats());
             }
             GameStory = _session.Get<GameStory>(GAMESTORYKEY);

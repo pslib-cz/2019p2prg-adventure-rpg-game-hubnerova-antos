@@ -6,18 +6,18 @@ namespace RPG_game.Services
 {
     public class RpgLogic
     {
-        readonly SessionStorage _session;
+        readonly SessionStorage _sessionstorage;
         public GameStory _gamestory;
 
         public RpgLogic(SessionStorage session)
         {
-            _session = session;
-            _gamestory = _session.GameStory;
+            _sessionstorage = session;
+            _gamestory = _sessionstorage.GameStory;
         }
 
         public Location Play()
         {
-            int? id = _session.GetLocationId();
+            int? id = _sessionstorage.GetLocationId();
             Location location;
             /*if (id == null || id == 0)
             {
@@ -27,12 +27,16 @@ namespace RPG_game.Services
             {
                 location = _session.GameStory.Locations[id.Value];
             }*/
-            location = _session.GameStory.Locations[id.Value];
+            location = _sessionstorage.GameStory.Locations[id.Value];
             if (location.LevelUp == true) this.LevelUp();
             if (location.DateCountUp == true) this.DateCountUp();
             if (location.PathToLock != null) this.LockPath(location.PathToLock.LocationId, location.PathToLock.PathId);
             if (location.PathToUnlock != null) this.UnlockPath(location.PathToUnlock.LocationId, location.PathToUnlock.PathId);
             if (location.Person != null) this.AddPerson(location.Person);
+            if (location.DateAllowed == true)
+            {
+                this.RedirectPath(700, 0, _sessionstorage.GameStory.GetRandom(RandomEnum.DateSuccess));
+            }
             if (location.RedirectPaths != null)
             {
                 foreach (RedirectPath item in location.RedirectPaths) this.RedirectPath(item.LocationId, item.PathId, item.NewNextLocationId);
@@ -40,79 +44,79 @@ namespace RPG_game.Services
             return location;
         }
 
-        public void UnlockPath(int LocationId, int PathId)
+        private void UnlockPath(int LocationId, int PathId)
         {
-            _session.GameStory.Locations[LocationId].Paths[PathId].IsLocked = false;
-            _session.SaveGameStory();
+            _sessionstorage.GameStory.Locations[LocationId].Paths[PathId].IsLocked = false;
+            _sessionstorage.SaveGameStory();
         }
 
-        public void LockPath(int LocationId, int PathId)
+        private void LockPath(int LocationId, int PathId)
         {
-            _session.GameStory.Locations[LocationId].Paths[PathId].IsLocked = true;
-            _session.SaveGameStory();
+            _sessionstorage.GameStory.Locations[LocationId].Paths[PathId].IsLocked = true;
+            _sessionstorage.SaveGameStory();
         }
 
-        public void RedirectPath(int LocationId, int PathId, int NewNextLocationId)
+        private void RedirectPath(int LocationId, int PathId, int NewNextLocationId)
         {
-            _session.GameStory.Locations[LocationId].Paths[PathId].NextLocationId = NewNextLocationId;
-            _session.SaveGameStory();
+            _sessionstorage.GameStory.Locations[LocationId].Paths[PathId].NextLocationId = NewNextLocationId;
+            _sessionstorage.SaveGameStory();
         }
 
-        public void RedirectPaths (Dictionary<int, LocationPath> RedirectPaths, int NewNextLocationId)
+        private void RedirectPaths (Dictionary<int, LocationPath> RedirectPaths, int NewNextLocationId)
         {
             foreach (KeyValuePair<int, LocationPath> item in RedirectPaths)
             {
-                _session.GameStory.Locations[item.Value.LocationId].Paths[item.Value.PathId].NextLocationId = NewNextLocationId;
+                _sessionstorage.GameStory.Locations[item.Value.LocationId].Paths[item.Value.PathId].NextLocationId = NewNextLocationId;
             }
-            _session.SaveGameStory();
+            _sessionstorage.SaveGameStory();
 
         }
 
         public Dictionary<String, Person> GetStats()
         {
-            return _session.Stats.Acquaintances;
+            return _sessionstorage.Stats.Acquaintances;
         }
 
-        public void AddPerson(Person person)
+        private void AddPerson(Person person)
         {
-            _session.Stats.Acquaintances.TryAdd(person.Name, person);
-            _session.SaveStats();
+            _sessionstorage.Stats.Acquaintances.TryAdd(person.Name, person);
+            _sessionstorage.SaveStats();
         }
 
         //LevelCount
-        public void SetLevel(int level)
+        private void SetLevel(int level)
         {
-            _session.Stats.Level = level;
-            _session.SaveStats();
+            _sessionstorage.Stats.Level = level;
+            _sessionstorage.SaveStats();
         }
 
         public int GetLevel()
         {
-            return _session.Stats.Level;
+            return _sessionstorage.Stats.Level;
         }
 
-        public void LevelUp()
+        private void LevelUp()
         {
-            _session.Stats.Level++;
-            _session.SaveStats();
+            _sessionstorage.Stats.Level++;
+            _sessionstorage.SaveStats();
         }
 
         //DateCount
-        public void SetDateCount(int count)
+        private void SetDateCount(int count)
         {
-            _session.Stats.DateCount = count;
-            _session.SaveStats();
+            _sessionstorage.Stats.DateCount = count;
+            _sessionstorage.SaveStats();
         }
 
         public int GetDateCount()
         {
-            return _session.Stats.DateCount;
+            return _sessionstorage.Stats.DateCount;
         }
 
-        public void DateCountUp()
+        private void DateCountUp()
         {
-            _session.Stats.DateCount++;
-            _session.SaveStats();
+            _sessionstorage.Stats.DateCount++;
+            _sessionstorage.SaveStats();
         }
     }
 }

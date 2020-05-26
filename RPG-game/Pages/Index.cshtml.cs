@@ -14,21 +14,21 @@ namespace RPG_game.Pages
     {
         public Location Location { get; set; }
         public RpgLogic _rpglogic;
-        public SessionStorage _session;
+        public SessionStorage _sessionstorage;
         public Dictionary<String, Person> Acquaintances { get; set; }
         public int? Level { get; set; }
         public int? DateCount { get; set; }
 
 
-        public IndexModel(RpgLogic rpglogic, SessionStorage session)
+        public IndexModel(RpgLogic rpglogic, SessionStorage sessionstorage)
         {
             _rpglogic = rpglogic;
-            _session = session;
+            _sessionstorage = sessionstorage;
         }
 
         public void OnGet()
         {
-            _session.SetLocationId(1);
+            _sessionstorage.SetLocationId(1);
             Location = _rpglogic.Play();
             Acquaintances = _rpglogic.GetStats();
             Level = _rpglogic.GetLevel();
