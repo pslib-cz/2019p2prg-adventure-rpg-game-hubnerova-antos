@@ -28,7 +28,7 @@
                 }
                 else
                 {
-                    <a asp-page="/Pages" asp-route-to="@item.NextLocationId" class="btn btn-secondary">@item.PathDescription</a>
+                    <a asp-page="/@item.NextPage" asp-route-to="@item.NextLocationId" class="btn btn-secondary">@item.PathDescription</a>
                 }
             }
         </div>

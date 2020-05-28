@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Microsoft.AspNetCore.Mvc;
 using RPG_game.Model;
 
 namespace RPG_game.Services
@@ -18,16 +19,7 @@ namespace RPG_game.Services
         public Location Play()
         {
             int? id = _sessionstorage.GetLocationId();
-            Location location;
-            /*if (id == null || id == 0)
-            {
-                location = _session.GameStory.Locations[1];
-            }
-            else
-            {
-                location = _session.GameStory.Locations[id.Value];
-            }*/
-            location = _sessionstorage.GameStory.Locations[id.Value];
+            Location location = _sessionstorage.GameStory.Locations[id.Value];
             if (location.LevelUp == true) this.LevelUp();
             if (location.DateCountUp == true) this.DateCountUp();
             if (location.SuccessfulDateCountUp == true) this.SuccessfulDateCountUp();
@@ -36,11 +28,16 @@ namespace RPG_game.Services
             if (location.Person != null) this.AddPerson(location.Person);
             if (location.DateAllowed == true)
             {
-                this.RedirectPath(700, 0, _sessionstorage.GameStory.GetRandom(RandomEnum.DateSuccess));
+                this.RedirectPath(700, 0, _sessionstorage.GameStory.GetRandom(RandomEnum.DateSuccess), "Pages");
             }
             if (location.RedirectPaths != null)
             {
-                foreach (RedirectPath item in location.RedirectPaths) this.RedirectPath(item.LocationId, item.PathId, item.NewNextLocationId);
+                foreach (RedirectPath item in location.RedirectPaths) this.RedirectPath(item.LocationId, item.PathId, item.NewNextLocationId, item.NewNextPage);
+            }
+            if (_sessionstorage.Stats.SuccessfulDateCount == 5)
+            {
+                this.RedirectPath(704, 0, 0, "Review");
+                this.RedirectPath(705, 0, 0, "Review");
             }
             return location;
         }
@@ -57,25 +54,22 @@ namespace RPG_game.Services
             _sessionstorage.SaveGameStory();
         }
 
-        private void RedirectPath(int LocationId, int PathId, int NewNextLocationId)
+        private void RedirectPath(int LocationId, int PathId, int NewNextLocationId, string NewNextPage)
         {
             _sessionstorage.GameStory.Locations[LocationId].Paths[PathId].NextLocationId = NewNextLocationId;
-            _sessionstorage.SaveGameStory();
-        }
-
-        private void RedirectPaths (Dictionary<int, LocationPath> RedirectPaths, int NewNextLocationId)
-        {
-            foreach (KeyValuePair<int, LocationPath> item in RedirectPaths)
+            if (NewNextPage != null)
             {
-                _sessionstorage.GameStory.Locations[item.Value.LocationId].Paths[item.Value.PathId].NextLocationId = NewNextLocationId;
+                _sessionstorage.GameStory.Locations[LocationId].Paths[PathId].NextPage = NewNextPage;
             }
             _sessionstorage.SaveGameStory();
-
         }
 
-        public Dictionary<String, Person> GetStats()
+        private void RedirectPaths (Dictionary<int, RedirectPath> RedirectPaths, int NewNextLocationId)
         {
-            return _sessionstorage.Stats.Acquaintances;
+            foreach (KeyValuePair<int, RedirectPath> item in RedirectPaths)
+            {
+                RedirectPath(item.Value.LocationId, item.Value.PathId, item.Value.NewNextLocationId, item.Value.NewNextPage);
+            }
         }
 
         private void AddPerson(Person person)
@@ -85,17 +79,6 @@ namespace RPG_game.Services
         }
 
         //LevelCount
-        private void SetLevel(int level)
-        {
-            _sessionstorage.Stats.Level = level;
-            _sessionstorage.SaveStats();
-        }
-
-        public int GetLevel()
-        {
-            return _sessionstorage.Stats.Level;
-        }
-
         private void LevelUp()
         {
             _sessionstorage.Stats.Level++;
@@ -103,31 +86,9 @@ namespace RPG_game.Services
         }
 
         //DateCount
-        private void SetDateCount(int count)
-        {
-            _sessionstorage.Stats.DateCount = count;
-            _sessionstorage.SaveStats();
-        }
-
-        public int GetDateCount()
-        {
-            return _sessionstorage.Stats.DateCount;
-        }
-
         private void DateCountUp()
         {
             _sessionstorage.Stats.DateCount++;
-            _sessionstorage.SaveStats();
-        }
-
-        public int GetSuccessfulDateCount()
-        {
-            return _sessionstorage.Stats.SuccessfulDateCount;
-        }
-
-        private void SetSuccessfulDateCount(int count)
-        {
-            _sessionstorage.Stats.SuccessfulDateCount = count;
             _sessionstorage.SaveStats();
         }
 
@@ -135,6 +96,12 @@ namespace RPG_game.Services
         {
             _sessionstorage.Stats.SuccessfulDateCount++;
             _sessionstorage.SaveStats();
+        }
+
+        //Stats (Get)
+        public Stats GetStats()
+        {
+            return _sessionstorage.Stats;
         }
     }
 }

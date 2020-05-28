@@ -7,6 +7,5 @@ namespace RPG_game.Model
     {
         public int LocationId { get; set; }
         public int PathId { get; set; }
-
     }
 }

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -10,14 +10,14 @@ using RPG_game.Services;
 
 namespace RPG_game.Pages
 {
-    public class IndexModel : PageModel
+    public class ReviewModel : PageModel
     {
         public Location Location { get; set; }
         public RpgLogic _rpglogic;
         public SessionStorage _sessionstorage;
         public Stats Stats;
 
-        public IndexModel(RpgLogic rpglogic, SessionStorage sessionstorage)
+        public ReviewModel(RpgLogic rpglogic, SessionStorage sessionstorage)
         {
             _rpglogic = rpglogic;
             _sessionstorage = sessionstorage;
@@ -25,7 +25,6 @@ namespace RPG_game.Pages
 
         public void OnGet()
         {
-            _sessionstorage.NewGame();
             _sessionstorage.SetLocationId(1);
             Location = _rpglogic.Play();
             Stats = _rpglogic.GetStats();

@@ -7,5 +7,10 @@ namespace RPG_game.Model
         public string PathDescription { get; set; }
         public bool IsLocked { get; set; }
         public int NextLocationId { get; set; }
+        public string NextPage { get; set; }
+        public Path ()
+        {
+            NextPage = "Pages";
+        }
     }
 }

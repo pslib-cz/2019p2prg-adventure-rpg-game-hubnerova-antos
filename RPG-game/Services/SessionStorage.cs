@@ -21,13 +21,15 @@ namespace RPG_game.Services
         public SessionStorage(IHttpContextAccessor hce)
         {
             _session = hce.HttpContext.Session;
-            if (_session.Get<GameStory>(GAMESTORYKEY) == null && _session.Get<Stats>(STATSKEY) == null)
-            {
-                _session.Set(GAMESTORYKEY, new GameStory(new Random()));
-                _session.Set(STATSKEY, new Stats());
-            }
+            if (_session.Get<GameStory>(GAMESTORYKEY) == null && _session.Get<Stats>(STATSKEY) == null) this.NewGame();
             GameStory = _session.Get<GameStory>(GAMESTORYKEY);
             Stats = _session.Get<Stats>(STATSKEY);
+        }
+
+        public void NewGame()
+        {
+            _session.Set(GAMESTORYKEY, new GameStory(new Random()));
+            _session.Set(STATSKEY, new Stats());
         }
 
         //LocationId

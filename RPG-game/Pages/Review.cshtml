@@ -1,0 +1,49 @@
+@page
+@model RPG_game.Pages.ReviewModel
+@{
+    ViewData["Title"] = "Review";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Review</title>
+</head>
+<body>
+    @section Scripts {
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    }
+    <div class="text-center">
+        <h1 class="display-4">Konec hry</h1>
+        @if (Model.Stats.SuccessfulDateCount >= 5)
+        {
+        <p>Gratulujeme, již jsi mistr v seznamování, alespoň tedy v naší hře. Níže se můžeš podívat, jak se ti vedlo. Věříme, že sis naši hru užil a alespoň trochu tě bavila.</p>
+        }
+        else
+        {
+        <p>Hra nebyla dokončena, zkus ji znovu. I tak níže najdeš své statistiky.</p>
+        }
+    </div>
+    <table class="table">
+        <tbody>
+            <tr>
+                <td>Level</td>
+                <td>@Model.Stats.Level</td>
+            </tr>
+            <tr>
+                <td>Počet schůzek</td>
+                <td>@Model.Stats.DateCount</td>
+            </tr>
+            <tr>
+                <td>Počet úspěchů</td>
+                <td>@Model.Stats.SuccessfulDateCount</td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="text-center">
+        <a asp-page="/Index" class="btn btn-secondary">Nová hra</a>
+    </div>
+</body>
+</html>

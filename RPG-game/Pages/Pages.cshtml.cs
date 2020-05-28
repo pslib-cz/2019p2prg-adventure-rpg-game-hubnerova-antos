@@ -14,10 +14,7 @@ namespace RPG_game.Pages
         public Location Location { get; set; }
         public RpgLogic _rpglogic;
         public SessionStorage _sessionstorage;
-        public Dictionary<String, Person> Acquaintances { get; set; }
-        public int? Level;
-        public int? DateCount;
-        public int? SuccessfulDateCount;
+        public Stats Stats;
 
         public PagesModel(RpgLogic rpglogic, SessionStorage sessionstorage)
         {
@@ -29,10 +26,7 @@ namespace RPG_game.Pages
         {
             _sessionstorage.SetLocationId(to);
             Location = _rpglogic.Play();
-            Acquaintances = _rpglogic.GetStats();
-            Level = _rpglogic.GetLevel();
-            DateCount = _rpglogic.GetDateCount();
-            SuccessfulDateCount = _rpglogic.GetSuccessfulDateCount();
+            Stats = _rpglogic.GetStats();
         }
     }
 }
