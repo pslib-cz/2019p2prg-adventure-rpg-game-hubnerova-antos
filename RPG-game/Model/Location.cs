@@ -15,5 +15,7 @@ namespace RPG_game.Model
         public Person Person { get; set; }
         public bool DateAllowed { get; set; }
         public bool DateCountUp { get; set; }
+        public bool SuccessfulDateCountUp { get; set; }
     }
+
 }

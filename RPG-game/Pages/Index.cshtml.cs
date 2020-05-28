@@ -18,6 +18,7 @@ namespace RPG_game.Pages
         public Dictionary<String, Person> Acquaintances { get; set; }
         public int? Level { get; set; }
         public int? DateCount { get; set; }
+        public int? SuccessfulDateCount { get; set; }
 
 
         public IndexModel(RpgLogic rpglogic, SessionStorage sessionstorage)
@@ -33,6 +34,7 @@ namespace RPG_game.Pages
             Acquaintances = _rpglogic.GetStats();
             Level = _rpglogic.GetLevel();
             DateCount = _rpglogic.GetDateCount();
+            SuccessfulDateCount = _rpglogic.GetSuccessfulDateCount();
         }
     }
 }

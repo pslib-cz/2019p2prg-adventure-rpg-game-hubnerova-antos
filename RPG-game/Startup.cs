@@ -34,8 +34,8 @@ namespace RPG_game
             services.AddTransient<SessionStorage>();
             services.AddSingleton<Random>(); //generátor random
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>(); //zpřístupnění httpcontextu
-            services.AddSingleton<GameStory>(); //příběh hry
-            services.AddSingleton<Stats>(); //statistiky hry
+            //services.AddSingleton<GameStory>(); //příběh hry
+            //services.AddSingleton<Stats>(); //statistiky hry
 
             //services.AddScoped<>();
             //services.AddTransient<>();

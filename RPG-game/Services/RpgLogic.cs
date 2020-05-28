@@ -30,6 +30,7 @@ namespace RPG_game.Services
             location = _sessionstorage.GameStory.Locations[id.Value];
             if (location.LevelUp == true) this.LevelUp();
             if (location.DateCountUp == true) this.DateCountUp();
+            if (location.SuccessfulDateCountUp == true) this.SuccessfulDateCountUp();
             if (location.PathToLock != null) this.LockPath(location.PathToLock.LocationId, location.PathToLock.PathId);
             if (location.PathToUnlock != null) this.UnlockPath(location.PathToUnlock.LocationId, location.PathToUnlock.PathId);
             if (location.Person != null) this.AddPerson(location.Person);
@@ -116,6 +117,23 @@ namespace RPG_game.Services
         private void DateCountUp()
         {
             _sessionstorage.Stats.DateCount++;
+            _sessionstorage.SaveStats();
+        }
+
+        public int GetSuccessfulDateCount()
+        {
+            return _sessionstorage.Stats.SuccessfulDateCount;
+        }
+
+        private void SetSuccessfulDateCount(int count)
+        {
+            _sessionstorage.Stats.SuccessfulDateCount = count;
+            _sessionstorage.SaveStats();
+        }
+
+        private void SuccessfulDateCountUp()
+        {
+            _sessionstorage.Stats.SuccessfulDateCount++;
             _sessionstorage.SaveStats();
         }
     }
