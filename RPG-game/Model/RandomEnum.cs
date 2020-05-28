@@ -6,5 +6,8 @@ namespace RPG_game.Model
         Hairstyle = 0,
         Date = 1,
         DateSuccess = 2,
+        KostikOptions = 3,
+        DinaOptions = 4,
+        MuseumAloneOptions = 5,
     }
 }
