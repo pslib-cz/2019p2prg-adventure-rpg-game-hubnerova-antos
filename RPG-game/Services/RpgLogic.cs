@@ -26,14 +26,9 @@ namespace RPG_game.Services
             if (location.PathToLock != null) this.LockPath(location.PathToLock.LocationId, location.PathToLock.PathId);
             if (location.PathToUnlock != null) this.UnlockPath(location.PathToUnlock.LocationId, location.PathToUnlock.PathId);
             if (location.Person != null) this.AddPerson(location.Person);
-            if (location.DateAllowed == true)
-            {
-                this.RedirectPath(700, 0, _sessionstorage.GameStory.GetRandom(RandomEnum.DateSuccess), "Pages");
-            }
-            if (location.RedirectPaths != null)
-            {
-                foreach (RedirectPath item in location.RedirectPaths) this.RedirectPath(item.LocationId, item.PathId, item.NewNextLocationId, item.NewNextPage);
-            }
+            if (location.DateAllowed == true) this.RedirectPath(700, 0, _sessionstorage.GameStory.GetRandom(RandomEnum.DateSuccess), "Pages");
+            if (location.RedirectPaths != null) foreach (RedirectPath item in location.RedirectPaths) this.RedirectPath(item.LocationId, item.PathId, item.NewNextLocationId, item.NewNextPage);
+            if (location.Cost != 0) this.Spend(location.Cost);
             if (_sessionstorage.Stats.SuccessfulDateCount == 5)
             {
                 this.RedirectPath(704, 0, 0, "Review");
@@ -102,6 +97,12 @@ namespace RPG_game.Services
         public Stats GetStats()
         {
             return _sessionstorage.Stats;
+        }
+
+        //Spend
+        public void Spend(int cost)
+        {
+            _sessionstorage.Stats.Spent += cost;
         }
     }
 }
