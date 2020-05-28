@@ -59,13 +59,13 @@ namespace RPG_game.Services
             _sessionstorage.SaveGameStory();
         }
 
-        private void RedirectPaths (Dictionary<int, RedirectPath> RedirectPaths, int NewNextLocationId)
+        /*private void RedirectPaths (Dictionary<int, RedirectPath> RedirectPaths, int NewNextLocationId)
         {
             foreach (KeyValuePair<int, RedirectPath> item in RedirectPaths)
             {
                 RedirectPath(item.Value.LocationId, item.Value.PathId, item.Value.NewNextLocationId, item.Value.NewNextPage);
             }
-        }
+        }*/
 
         private void AddPerson(Person person)
         {
@@ -103,6 +103,7 @@ namespace RPG_game.Services
         public void Spend(int cost)
         {
             _sessionstorage.Stats.Spent += cost;
+            _sessionstorage.SaveStats();
         }
     }
 }
