@@ -6,5 +6,6 @@ namespace RPG_game.Model
         public string Name { get; set; }
         public int Age { get; set; }
         public int LocationId { get; set; }
+        public bool Disabled { get; set; }
     }
 }

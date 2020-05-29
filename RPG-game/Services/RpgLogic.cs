@@ -20,13 +20,14 @@ namespace RPG_game.Services
         {
             int? id = _sessionstorage.GetLocationId();
             int? lastId = _sessionstorage.GetLastLocationId();
-            Location location = _sessionstorage.GameStory.Locations[lastId.Value];
+            Location location = _sessionstorage.GameStory.Locations[id.Value];
+            /*Location location = _sessionstorage.GameStory.Locations[lastId.Value];
             foreach (Path item in _sessionstorage.GameStory.Locations[lastId.Value].Paths)
             {
                 if (item.NextLocationId == id.Value || id.Value == 700 || id.Value == 701)
-                {
+                {*/
                     _sessionstorage.SetLastLocationId(id.Value);
-                    location = _sessionstorage.GameStory.Locations[id.Value];
+                    //location = _sessionstorage.GameStory.Locations[id.Value];
                     if (location.LevelUp == true) this.LevelUp();
                     if (location.DateCountUp == true) this.DateCountUp();
                     if (location.SuccessfulDateCountUp == true) this.SuccessfulDateCountUp();
@@ -41,8 +42,8 @@ namespace RPG_game.Services
                         this.RedirectPath(704, 0, 0, "Review");
                         this.RedirectPath(705, 0, 0, "Review");
                     }
-                }
-            }
+                /*}
+            }*/
             return location;
         }
 
