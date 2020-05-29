@@ -12,6 +12,7 @@ namespace RPG_game.Services
     {
         readonly ISession _session;
         const string KEY = "LOCATIONID";
+        const string LASTLOCATIONKEY = "LASTLOCATIONID";
         const string GAMESTORYKEY = "GAMESTORYID";
         const string STATSKEY = "STATSID";
 
@@ -43,24 +44,24 @@ namespace RPG_game.Services
             return _session.GetInt32(KEY);
         }
 
+        public void SetLastLocationId(int number)
+        {
+            if (number != 0) _session.SetInt32(LASTLOCATIONKEY, number);
+        }
+
+        public int? GetLastLocationId()
+        {
+            return _session.GetInt32(LASTLOCATIONKEY);
+        }
+
         public void SaveStats()
         {
             _session.Set(STATSKEY, this.Stats);
         }
 
-        /*public void SetStats(Stats stats)
-        {
-            _session.Set(STATSKEY, stats);
-        }*/
-
         public void SaveGameStory()
         {
             _session.Set(GAMESTORYKEY, this.GameStory);
         }
-
-        /*public void SetGameStory(GameStory gameStory)
-        {
-            _session.Set(GAMESTORYKEY, gameStory);
-        }*/
     }
 }
