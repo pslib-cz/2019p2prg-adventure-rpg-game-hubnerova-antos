@@ -20,10 +20,10 @@
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex">
                     <div class="navbar-nav">
+                        <a class="nav-item nav-link text-dark" asp-area="" asp-page="/Review">Konec hry</a>
                         <div class="dropdown">
-                            <button class="btn bg-transparent dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Známí
-                            </button>
+                            <a class="nav-link dropdown-toggle text-dark" asp-area="" asp-page="/Review" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Známí</a>
+
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                 @foreach (KeyValuePair<string, Person> item in Model.Stats.Acquaintances)
                                 {
