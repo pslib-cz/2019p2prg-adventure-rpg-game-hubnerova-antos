@@ -33,6 +33,7 @@ namespace RPG_game.Services
                     if (location.PathToLock != null) this.LockPath(location.PathToLock.LocationId, location.PathToLock.PathId);
                     if (location.PathToUnlock != null) this.UnlockPath(location.PathToUnlock.LocationId, location.PathToUnlock.PathId);
                     if (location.Person != null) this.AddPerson(location.Person);
+                    MetPeople();
                     if (location.RedirectPaths != null) foreach (RedirectPath item2 in location.RedirectPaths) this.RedirectPath(item2.LocationId, item2.PathId, item2.NewNextLocationId, item2.NewNextPage);
                     if (location.Cost != 0) this.Spend(location.Cost);
                     if (_sessionstorage.Stats.SuccessfulDateCount == 5)
@@ -67,13 +68,13 @@ namespace RPG_game.Services
             _sessionstorage.SaveGameStory();
         }
 
-        /*private void RedirectPaths (Dictionary<int, RedirectPath> RedirectPaths, int NewNextLocationId)
+        private void RedirectPaths (Dictionary<int, RedirectPath> RedirectPaths, int NewNextLocationId)
         {
             foreach (KeyValuePair<int, RedirectPath> item in RedirectPaths)
             {
                 RedirectPath(item.Value.LocationId, item.Value.PathId, item.Value.NewNextLocationId, item.Value.NewNextPage);
             }
-        }*/
+        }
 
         private void AddPerson(Person person)
         {
@@ -113,6 +114,15 @@ namespace RPG_game.Services
             _sessionstorage.Stats.Spent += cost;
             _sessionstorage.SaveStats();
         }
+
+        //Met People
+        public void MetPeople()
+        {
+            _sessionstorage.Stats.MetPeople = _sessionstorage.Stats.Acquaintances.Count;
+            _sessionstorage.SaveStats();
+        }
+
+
     }
 }
 

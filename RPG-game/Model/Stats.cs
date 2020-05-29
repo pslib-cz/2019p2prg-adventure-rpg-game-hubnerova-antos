@@ -11,6 +11,7 @@ namespace RPG_game.Model
         public int SuccessfulDateCount { get; set; }
         public int Level { get; set; }
         public int Spent { get; set; }
+        public int MetPeople { get; set; }
 
         public Dictionary<String, Person> Acquaintances = new Dictionary<String, Person>();
 
