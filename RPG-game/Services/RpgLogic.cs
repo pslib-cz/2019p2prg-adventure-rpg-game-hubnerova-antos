@@ -37,6 +37,10 @@ namespace RPG_game.Services
                     MetPeople();
                     if (location.RedirectPaths != null) foreach (RedirectPath item2 in location.RedirectPaths) this.RedirectPath(item2.LocationId, item2.PathId, item2.NewNextLocationId, item2.NewNextPage);
                     if (location.Cost != 0) this.Spend(location.Cost);
+                    if (location.Cinema == true) this.CinemaCountUp();
+                    if (location.Coffee == true) this.CoffeeCountUp();
+                    if (location.Hairstyle == true) this.HairstyleCountUp();
+                    if (location.Museum == true) this.MuseumCountUp();
                     if (_sessionstorage.Stats.SuccessfulDateCount == 5)
                     {
                         this.RedirectPath(704, 0, 0, "Review");
@@ -109,19 +113,45 @@ namespace RPG_game.Services
             return _sessionstorage.Stats;
         }
 
-        //Spend
-        public void Spend(int cost)
-        {
-            _sessionstorage.Stats.Spent += cost;
-            _sessionstorage.SaveStats();
-        }
-
         //Met People
         public void MetPeople()
         {
             _sessionstorage.Stats.MetPeople = _sessionstorage.Stats.Acquaintances.Count;
             _sessionstorage.SaveStats();
         }
+
+        //Review
+        public void Spend(int cost)
+        {
+            _sessionstorage.Stats.Spent += cost;
+            _sessionstorage.SaveStats();
+        }
+
+        
+        public void CinemaCountUp()
+        {
+            _sessionstorage.Stats.CinemaCount++;
+            _sessionstorage.SaveStats();
+        }
+
+        public void CoffeeCountUp()
+        {
+            _sessionstorage.Stats.CoffeeCount++;
+            _sessionstorage.SaveStats();
+        }
+
+        public void HairstyleCountUp()
+        {
+            _sessionstorage.Stats.HairstyleCount++;
+            _sessionstorage.SaveStats();
+        }
+
+        public void MuseumCountUp()
+        {
+            _sessionstorage.Stats.MuseumCount++;
+            _sessionstorage.SaveStats();
+        }
+
 
 
     }

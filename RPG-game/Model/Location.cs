@@ -17,6 +17,11 @@ namespace RPG_game.Model
         public bool DateCountUp { get; set; }
         public bool SuccessfulDateCountUp { get; set; }
         public int Cost { get; set; }
+        public bool Coffee { get; set; }
+        public bool Hairstyle {get;set;}
+        public bool Cinema { get; set; }
+        public bool Museum { get; set; }
+
     }
 
 }

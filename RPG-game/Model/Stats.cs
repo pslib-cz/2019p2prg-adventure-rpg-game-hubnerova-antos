@@ -12,6 +12,10 @@ namespace RPG_game.Model
         public int Level { get; set; }
         public int Spent { get; set; }
         public int MetPeople { get; set; }
+        public int CoffeeCount { get; set; }
+        public int MuseumCount { get; set; }
+        public int HairstyleCount { get; set; }
+        public int CinemaCount { get; set; }
 
         public Dictionary<String, Person> Acquaintances = new Dictionary<String, Person>();
 
