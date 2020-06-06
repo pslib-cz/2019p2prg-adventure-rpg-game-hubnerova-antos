@@ -9,5 +9,8 @@ namespace RPG_game.Model
         KostikOptions = 3,
         DinaOptions = 4,
         MuseumAloneOptions = 5,
+        CinemaPepaOptions = 6,
+        CinemaJanaOptions = 7,
+        MovieOptions = 8,
     }
 }
