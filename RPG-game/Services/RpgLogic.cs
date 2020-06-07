@@ -33,6 +33,7 @@ namespace RPG_game.Services
                     if (location.SuccessfulDateCountUp == true) this.SuccessfulDateCountUp();
                     if (location.PathToLock != null) this.LockPath(location.PathToLock.LocationId, location.PathToLock.PathId);
                     if (location.PathToUnlock != null) this.UnlockPath(location.PathToUnlock.LocationId, location.PathToUnlock.PathId);
+                    if (location.PathsToUnlock != null) foreach (LocationPath item2 in location.PathsToUnlock) this.UnlockPath(item2.LocationId, item2.PathId);
                     if (location.Person != null) this.AddPerson(location.Person);
                     MetPeople();
                     if (location.RedirectPaths != null) foreach (RedirectPath item2 in location.RedirectPaths) this.RedirectPath(item2.LocationId, item2.PathId, item2.NewNextLocationId, item2.NewNextPage);
@@ -41,6 +42,7 @@ namespace RPG_game.Services
                     if (location.Coffee == true) this.CoffeeCountUp();
                     if (location.Hairstyle == true) this.HairstyleCountUp();
                     if (location.Museum == true) this.MuseumCountUp();
+                    if (location.Picnic == true) this.PicnicCountUp();
                     if (_sessionstorage.Stats.SuccessfulDateCount == 5)
                     {
                         this.RedirectPath(704, 0, 0, "Review");
@@ -73,13 +75,7 @@ namespace RPG_game.Services
             _sessionstorage.SaveGameStory();
         }
 
-        private void RedirectPaths (Dictionary<int, RedirectPath> RedirectPaths, int NewNextLocationId)
-        {
-            foreach (KeyValuePair<int, RedirectPath> item in RedirectPaths)
-            {
-                RedirectPath(item.Value.LocationId, item.Value.PathId, item.Value.NewNextLocationId, item.Value.NewNextPage);
-            }
-        }
+
 
         private void AddPerson(Person person)
         {
@@ -151,6 +147,14 @@ namespace RPG_game.Services
             _sessionstorage.Stats.MuseumCount++;
             _sessionstorage.SaveStats();
         }
+
+        public void PicnicCountUp()
+        {
+            _sessionstorage.Stats.PicnicCount++;
+            _sessionstorage.SaveStats();
+        }
+
+
 
 
 

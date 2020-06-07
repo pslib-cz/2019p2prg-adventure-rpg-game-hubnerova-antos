@@ -12,5 +12,6 @@ namespace RPG_game.Model
         CinemaPepaOptions = 6,
         CinemaJanaOptions = 7,
         MovieOptions = 8,
+        ParkBenchOptions = 9,
     }
 }

@@ -10,6 +10,7 @@ namespace RPG_game.Model
         public List<Path> Paths { get; set; }
         public LocationPath PathToLock { get; set; }
         public LocationPath PathToUnlock { get; set; }
+        public List<LocationPath> PathsToUnlock { get; set; }
         public bool LevelUp { get; set; }
         public List<RedirectPath> RedirectPaths { get; set; }
         public Person Person { get; set; }
@@ -21,6 +22,7 @@ namespace RPG_game.Model
         public bool Hairstyle {get;set;}
         public bool Cinema { get; set; }
         public bool Museum { get; set; }
+        public bool Picnic { get; set; }
 
     }
 
