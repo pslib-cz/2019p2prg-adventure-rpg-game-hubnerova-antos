@@ -17,9 +17,8 @@ namespace RPG_game.Pages
         public SessionStorage _sessionstorage;
         public Stats Stats;
 
-        public IndexModel(RpgLogic rpglogic, SessionStorage sessionstorage)
+        public IndexModel(SessionStorage sessionstorage)
         {
-            _rpglogic = rpglogic;
             _sessionstorage = sessionstorage;
         }
 
@@ -28,8 +27,8 @@ namespace RPG_game.Pages
             _sessionstorage.NewGame();
             _sessionstorage.SetLastLocationId(1);
             _sessionstorage.SetLocationId(1);
-            Location = _rpglogic.Play();
-            Stats = _rpglogic.GetStats();
+            Location = new Location();
+            Stats = new Stats();
         }
     }
 }
