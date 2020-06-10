@@ -23,7 +23,7 @@ namespace RPG_game.Model
         public bool Cinema { get; set; }
         public bool Museum { get; set; }
         public bool Picnic { get; set; }
-
+        public bool DateRejected { get; set; }
     }
 
 }

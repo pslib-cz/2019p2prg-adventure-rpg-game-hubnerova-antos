@@ -43,6 +43,7 @@ namespace RPG_game.Services
                     if (location.Hairstyle == true) this.HairstyleCountUp();
                     if (location.Museum == true) this.MuseumCountUp();
                     if (location.Picnic == true) this.PicnicCountUp();
+                    if (location.DateRejected == true) this.DisablePerson(_sessionstorage.GameStory.Locations[lastId.Value].Name);
                     if (_sessionstorage.Stats.SuccessfulDateCount == 5)
                     {
                         this.RedirectPath(704, 0, 0, "Review");
@@ -154,10 +155,11 @@ namespace RPG_game.Services
             _sessionstorage.SaveStats();
         }
 
-
-
-
-
+        public void DisablePerson(string name)
+        {
+            _sessionstorage.Stats.Acquaintances[name].Disabled = true;
+            _sessionstorage.SaveStats();
+        }
     }
 }
 

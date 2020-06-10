@@ -29,11 +29,25 @@
                                 {
                                     if (Model.Location.DateAllowed == true)
                                     {
-                                        <a class="dropdown-item" asp-page="/Pages" asp-route-to="@item.Value.LocationId">@item.Value.Name @if (@item.Value.Age != 0)@item.Value.Age </a>
+                                        if (item.Value.Disabled == false)
+                                        {
+                                            <a class="dropdown-item" asp-page="/Pages" asp-route-to="@item.Value.LocationId">@item.Value.Name @if (@item.Value.Age != 0)@item.Value.Age </a>
+                                        }
+                                        if (item.Value.Disabled == true)
+                                        {
+                                            <a class="dropdown-item disabled" tabindex="-1" aria-disabled="true" asp-page="/Pages">@item.Value.Name @if (@item.Value.Age != 0)@item.Value.Age </a>
+                                        }
                                     }
                                     else
                                     {
-                                        <a class="dropdown-item">@item.Value.Name @if (@item.Value.Age != 0)@item.Value.Age </a>
+                                        if (item.Value.Disabled == false)
+                                        {
+                                            <a class="dropdown-item" asp-page="/Pages">@item.Value.Name @if (@item.Value.Age != 0)@item.Value.Age </a>
+                                        }
+                                        if (item.Value.Disabled == true)
+                                        {
+                                            <a class="dropdown-item disabled" tabindex="-1" aria-disabled="true" asp-page="/Pages">@item.Value.Name @if (@item.Value.Age != 0)@item.Value.Age </a>
+                                        }
                                     }
                                 }
 
