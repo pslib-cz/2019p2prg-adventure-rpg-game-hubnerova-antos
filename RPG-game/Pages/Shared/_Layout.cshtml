@@ -35,18 +35,18 @@
                                         }
                                         if (item.Value.Disabled == true)
                                         {
-                                            <a class="dropdown-item disabled" tabindex="-1" aria-disabled="true" asp-page="/Pages">@item.Value.Name @if (@item.Value.Age != 0)@item.Value.Age </a>
+                                            <a class="dropdown-item disabled" tabindex="-1" aria-disabled="true" asp-page="/Pages" asp-route-to="@item.Value.LocationId">@item.Value.Name @if (@item.Value.Age != 0)@item.Value.Age </a>
                                         }
                                     }
                                     else
                                     {
                                         if (item.Value.Disabled == false)
                                         {
-                                            <a class="dropdown-item" asp-page="/Pages">@item.Value.Name @if (@item.Value.Age != 0)@item.Value.Age </a>
+                                            <span class="dropdown-item-text">@item.Value.Name @if (@item.Value.Age != 0)@item.Value.Age </span>
                                         }
                                         if (item.Value.Disabled == true)
                                         {
-                                            <a class="dropdown-item disabled" tabindex="-1" aria-disabled="true" asp-page="/Pages">@item.Value.Name @if (@item.Value.Age != 0)@item.Value.Age </a>
+                                            <span class="dropdown-item-text text-secondary">@item.Value.Name @if (@item.Value.Age != 0)@item.Value.Age</span>
                                         }
                                     }
                                 }
