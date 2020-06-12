@@ -25,7 +25,6 @@ namespace RPG_game.Pages
         public void OnGet()
         {
             _sessionstorage.NewGame();
-            _sessionstorage.SetLastLocationId(1);
             _sessionstorage.SetLocationId(1);
             Location = new Location();
             Stats = new Stats();

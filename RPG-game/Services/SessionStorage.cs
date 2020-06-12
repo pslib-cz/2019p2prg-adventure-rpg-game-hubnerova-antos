@@ -12,7 +12,7 @@ namespace RPG_game.Services
     {
         readonly ISession _session;
         const string KEY = "LOCATIONID";
-        const string LASTLOCATIONKEY = "LASTLOCATIONID";
+        const string DATEPERSONKEY = "DATEPERSONID";
         const string GAMESTORYKEY = "GAMESTORYID";
         const string STATSKEY = "STATSID";
 
@@ -44,16 +44,18 @@ namespace RPG_game.Services
             return _session.GetInt32(KEY);
         }
 
-        public void SetLastLocationId(int number)
+        //Last date with a person - person name
+        public void SetLastDatePerson(string personName)
         {
-            if (number != 0) _session.SetInt32(LASTLOCATIONKEY, number);
+            _session.SetString(DATEPERSONKEY, personName);
         }
 
-        public int? GetLastLocationId()
+        public string GetLastDatePerson()
         {
-            return _session.GetInt32(LASTLOCATIONKEY);
+            return _session.GetString(DATEPERSONKEY);
         }
 
+        //Saving
         public void SaveStats()
         {
             _session.Set(STATSKEY, this.Stats);

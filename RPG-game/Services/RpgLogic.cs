@@ -19,38 +19,29 @@ namespace RPG_game.Services
         public Location Play()
         {
             int? id = _sessionstorage.GetLocationId();
-            int? lastId = _sessionstorage.GetLastLocationId();
             Location location = _sessionstorage.GameStory.Locations[id.Value];
-            /*Location location = _sessionstorage.GameStory.Locations[lastId.Value];
-            foreach (Path item in _sessionstorage.GameStory.Locations[lastId.Value].Paths)
+            if (location.LevelUp == true) this.LevelUp();
+            if (location.DateCountUp == true) this.DateCountUp();
+            if (location.SuccessfulDateCountUp == true) this.SuccessfulDateCountUp();
+            if (location.PathToLock != null) this.LockPath(location.PathToLock.LocationId, location.PathToLock.PathId);
+            if (location.PathToUnlock != null) this.UnlockPath(location.PathToUnlock.LocationId, location.PathToUnlock.PathId);
+            if (location.PathsToUnlock != null) foreach (LocationPath item2 in location.PathsToUnlock) this.UnlockPath(item2.LocationId, item2.PathId);
+            if (location.Person != null) this.AddPerson(location.Person);
+            MetPeople();
+            if (location.RedirectPaths != null) foreach (RedirectPath item2 in location.RedirectPaths) this.RedirectPath(item2.LocationId, item2.PathId, item2.NewNextLocationId, item2.NewNextPage);
+            if (location.Cost != 0) this.Spend(location.Cost);
+            if (location.Cinema == true) this.CinemaCountUp();
+            if (location.Coffee == true) this.CoffeeCountUp();
+            if (location.Hairstyle == true) this.HairstyleCountUp();
+            if (location.Museum == true) this.MuseumCountUp();
+            if (location.Picnic == true) this.PicnicCountUp();
+            if (location.DateWithPerson == true) _sessionstorage.SetLastDatePerson(location.Name);
+            if (location.DateRejected == true) this.DisablePerson (_sessionstorage.GetLastDatePerson());
+            if (_sessionstorage.Stats.SuccessfulDateCount == 5)
             {
-                if (item.NextLocationId == id.Value || id.Value == 700 || id.Value == 701)
-                {*/
-                    _sessionstorage.SetLastLocationId(id.Value);
-                    //location = _sessionstorage.GameStory.Locations[id.Value];
-                    if (location.LevelUp == true) this.LevelUp();
-                    if (location.DateCountUp == true) this.DateCountUp();
-                    if (location.SuccessfulDateCountUp == true) this.SuccessfulDateCountUp();
-                    if (location.PathToLock != null) this.LockPath(location.PathToLock.LocationId, location.PathToLock.PathId);
-                    if (location.PathToUnlock != null) this.UnlockPath(location.PathToUnlock.LocationId, location.PathToUnlock.PathId);
-                    if (location.PathsToUnlock != null) foreach (LocationPath item2 in location.PathsToUnlock) this.UnlockPath(item2.LocationId, item2.PathId);
-                    if (location.Person != null) this.AddPerson(location.Person);
-                    MetPeople();
-                    if (location.RedirectPaths != null) foreach (RedirectPath item2 in location.RedirectPaths) this.RedirectPath(item2.LocationId, item2.PathId, item2.NewNextLocationId, item2.NewNextPage);
-                    if (location.Cost != 0) this.Spend(location.Cost);
-                    if (location.Cinema == true) this.CinemaCountUp();
-                    if (location.Coffee == true) this.CoffeeCountUp();
-                    if (location.Hairstyle == true) this.HairstyleCountUp();
-                    if (location.Museum == true) this.MuseumCountUp();
-                    if (location.Picnic == true) this.PicnicCountUp();
-                    if (location.DateRejected == true) this.DisablePerson(_sessionstorage.GameStory.Locations[lastId.Value].Name);
-                    if (_sessionstorage.Stats.SuccessfulDateCount == 5)
-                    {
-                        this.RedirectPath(704, 0, 0, "Review");
-                        this.RedirectPath(705, 0, 0, "Review");
-                    }
-                /*}
-            }*/
+                this.RedirectPath(704, 0, 0, "Review");
+                this.RedirectPath(705, 0, 0, "Review");
+            }
             return location;
         }
 

@@ -24,6 +24,7 @@ namespace RPG_game.Model
         public bool Museum { get; set; }
         public bool Picnic { get; set; }
         public bool DateRejected { get; set; }
+        public bool DateWithPerson { get; set; }
     }
 
 }
