@@ -35,6 +35,7 @@ namespace RPG_game.Services
             if (location.Hairstyle == true) this.HairstyleCountUp();
             if (location.Museum == true) this.MuseumCountUp();
             if (location.Picnic == true) this.PicnicCountUp();
+            if (location.Club == true) this.ClubCountUp();
             if (location.DateWithPerson == true) _sessionstorage.SetLastDatePerson(location.Name);
             if (location.DateRejected == true) this.DisablePerson (_sessionstorage.GetLastDatePerson());
             if (_sessionstorage.Stats.SuccessfulDateCount == 5)
@@ -108,6 +109,12 @@ namespace RPG_game.Services
             _sessionstorage.SaveStats();
         }
 
+        public void DisablePerson(string name)
+        {
+            _sessionstorage.Stats.Acquaintances[name].Disabled = true;
+            _sessionstorage.SaveStats();
+        }
+
         //Review
         public void Spend(int cost)
         {
@@ -146,11 +153,12 @@ namespace RPG_game.Services
             _sessionstorage.SaveStats();
         }
 
-        public void DisablePerson(string name)
+        public void ClubCountUp()
         {
-            _sessionstorage.Stats.Acquaintances[name].Disabled = true;
+            _sessionstorage.Stats.ClubCount++;
             _sessionstorage.SaveStats();
         }
+
     }
 }
 

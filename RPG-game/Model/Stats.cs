@@ -17,6 +17,7 @@ namespace RPG_game.Model
         public int HairstyleCount { get; set; }
         public int CinemaCount { get; set; }
         public int PicnicCount { get; set; }
+        public int ClubCount { get; set; }
 
         public Dictionary<String, Person> Acquaintances = new Dictionary<String, Person>();
 
