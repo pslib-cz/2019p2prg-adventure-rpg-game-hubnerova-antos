@@ -16,5 +16,6 @@ namespace RPG_game.Model
         ClubOptions = 10,
         ClubExperience = 11,
         ClubEnter = 12,
+        MajkOptions = 13,
     }
 }

@@ -35,7 +35,7 @@ namespace RPG_game.Model
             RandomLocations.Add(RandomEnum.ClubOptions, new List<int> { 620, 621, 622, 623, 624 });
             RandomLocations.Add(RandomEnum.ClubExperience, new List<int> { 614, 615, 616 });
             RandomLocations.Add(RandomEnum.ClubEnter, new List<int> { 602, 603 });
-
+            RandomLocations.Add(RandomEnum.MajkOptions, new List<int> { 618, 619 });
 
             //Startup, konfigurace postavy (1-9)
             //Locations.Add(1, new Location() { Name = "Konfigurace tvé postavy", Description = "Tvým prvním úkolem bude vybrat si základní vlastnosti tvého hrdiny / ky. 😈", Paths = new List<Path>() { new Path() { PathId = 0, PathDescription = "Pokračovat", NextLocationId = 2 } } });
@@ -190,16 +190,16 @@ namespace RPG_game.Model
             Locations.Add(609, new Location() { Name = "Před klubem", Description = "Stojíš ve frontě a čekáš...", Paths = new List<Path>() { new Path() { PathId = 0, PathDescription = "Pokračovat", NextLocationIds = RandomLocations[RandomEnum.ClubEnter] } } });
 
             //Majk Klitenda
-            Locations.Add(610, new Location() { Name = "U baru", Description = "Máš štěstí a najdeš volnou stoličku. Sedneš si a mávneš na barmana. Ten vám naznačí, že vás slyšel a hned bude u tebe. Když k tobě po pár minutách přijde, automaticky mu koukneš na jmenovku.", Cost = 120, Person = new Person() { Name = "Majk Klitenda", LocationId = 762}, Paths = new List<Path>() { new Path() { PathId = 0, PathDescription = "Objednat si pití", NextLocationId = 611 } } });
-            Locations.Add(611, new Location() { Name = "U baru", Description = "V dobu, kdy je před tebe postaven tvůj objednaný drink, je na baru pouze pár lidí. Barman Majk vypadá, že je rád, že si může na chvilku odpočinout.", Paths = new List<Path>() { new Path() { PathId = 0, PathDescription = "V tichu popíjet", NextLocationId = 612 }, new Path() { PathId = 1, PathDescription = "Povídat si s Majkem", NextLocationId = 613 } } });
+            Locations.Add(610, new Location() { Name = "U baru", Description = "Máš štěstí a najdeš volnou stoličku. Sedneš si a mávneš na barmana. Ten vám naznačí, že vás slyšel a hned bude u tebe. Když k tobě po pár minutách přijde, automaticky mu koukneš na jmenovku.", RedirectPaths = new List<RedirectPath>() { new RedirectPath() { LocationId = 608, PathId = 1, NewNextLocationId = 617} }, Person = new Person() { Name = "Majk Klitenda", LocationId = 762}, Paths = new List<Path>() { new Path() { PathId = 0, PathDescription = "Objednat si pití", NextLocationId = 611 } } });
+            Locations.Add(611, new Location() { Name = "U baru", Description = "V dobu, kdy je před tebe postaven tvůj objednaný drink, je na baru pouze pár lidí. Barman Majk vypadá, že je rád, že si může na chvilku odpočinout.", Cost = 120, Paths = new List<Path>() { new Path() { PathId = 0, PathDescription = "V tichu popíjet", NextLocationId = 612 }, new Path() { PathId = 1, PathDescription = "Povídat si s Majkem", NextLocationId = 613 } } });
             Locations.Add(612, new Location() { Name = "Taneční klub Milimetr", Description = "Po dopití se zvedneš a jdeš se porozhlédnout po tanečním parketu.", Paths = new List<Path>() { new Path() { PathId = 0, PathDescription = "Pokračovat", NextLocationIds = RandomLocations[RandomEnum.ClubOptions] } } });
             Locations.Add(613, new Location() { Name = "U baru", Description = "Majk ti vypráví pár svých vtipných příhod, které se mu staly od té doby, co tu pracuje.", Paths = new List<Path>() { new Path() { PathId = 0, PathDescription = "Jít tancovat", NextLocationIds = RandomLocations[RandomEnum.ClubExperience] }, new Path() { PathId = 1, PathDescription = "Zkusit najít někoho známého", NextLocationIds = RandomLocations[RandomEnum.ClubOptions] } } });
             Locations.Add(614, new Location() { Name = "Odchod", Description = "Z klubu odcházíš unavený, ale spokojený.", Paths = new List<Path>() { new Path() { PathId = 0, PathDescription = "Odejít", NextLocationId = 10 } } });
             Locations.Add(615, new Location() { Name = "Odchod", Description = "Z klubu odcházíš poměrně brzy, protože tě to tam nebavilo.", Paths = new List<Path>() { new Path() { PathId = 0, PathDescription = "Odejít", NextLocationId = 10 } } });
             Locations.Add(616, new Location() { Name = "Odchod", Description = "Nejlepší noc. Užil sis na maximum.", Paths = new List<Path>() { new Path() { PathId = 0, PathDescription = "Odejít", NextLocationId = 10 } } });
-            Locations.Add(617, new Location() { Name = "", Description = "", Paths = new List<Path>() { new Path() { PathId = 0, PathDescription = "", NextLocationId = 10 } } });
-            Locations.Add(618, new Location() { Name = "", Description = "", Paths = new List<Path>() { new Path() { PathId = 0, PathDescription = "", NextLocationId = 10 } } });
-            Locations.Add(619, new Location() { Name = "", Description = "", Paths = new List<Path>() { new Path() { PathId = 0, PathDescription = "", NextLocationId = 10 } } });
+            Locations.Add(617, new Location() { Name = "U baru", Description = "Sedneš si na stoličku a čekáš, až se ti Majk bude věnovat.", Paths = new List<Path>() { new Path() { PathId = 0, PathDescription = "Objednat si drink", NextLocationId = 611 }, new Path() { PathId = 1, PathDescription = "Povídat si s Majkem", NextLocationIds = RandomLocations[RandomEnum.MajkOptions] } } });
+            Locations.Add(618, new Location() { Name = "U baru", Description = "Majk tě zas rád viděl. Dlouho jste si povídali a nasmáli se spolu", Paths = new List<Path>() { new Path() { PathId = 0, PathDescription = "Odejít z klubu", NextLocationId = 10 } } });
+            Locations.Add(619, new Location() { Name = "U baru", Description = "Majk měl dost práce a tak na tebe jenom mávnul.", Paths = new List<Path>() { new Path() { PathId = 0, PathDescription = "Jít tancovat", NextLocationIds = RandomLocations[RandomEnum.ClubExperience] }, new Path() { PathId = 1, PathDescription = "Zkusit najít někoho známého", NextLocationIds = RandomLocations[RandomEnum.ClubOptions] } } });
 
 
 
@@ -220,9 +220,6 @@ namespace RPG_game.Model
             Locations.Add(633, new Location() { Name = "AŽ DO MORKU KOSTÍ", Description = "Potkal jsi Kostíka.", Paths = new List<Path>() { new Path() { PathId = 0, PathDescription = "Jít tancovat", NextLocationIds = RandomLocations[RandomEnum.ClubExperience] }, new Path() { PathId = 1, PathDescription = "Jít společně na drink k baru", NextLocationIds = RandomLocations[RandomEnum.ClubExperience] }, new Path() { PathId = 2, PathDescription = "Zkusit najít někoho jiného", NextLocationIds = RandomLocations[RandomEnum.ClubOptions] } } });
             Locations.Add(634, new Location() { Name = "CHLEBA S MÁSLEM SE SALÁMEM", Description = "Potkal jsi Rózu Eaglovou.", Paths = new List<Path>() { new Path() { PathId = 0, PathDescription = "Jít tancovat", NextLocationIds = RandomLocations[RandomEnum.ClubExperience] }, new Path() { PathId = 1, PathDescription = "Jít společně na drink k baru", NextLocationIds = RandomLocations[RandomEnum.ClubExperience] }, new Path() { PathId = 2, PathDescription = "Zkusit najít někoho jiného", NextLocationIds = RandomLocations[RandomEnum.ClubOptions] } } });
             Locations.Add(635, new Location() { Name = "PEČIVO, CHLEBA, ČTYŘI ROHLÍKY", Description = "Potkal jsi Neznámého prodavače", Paths = new List<Path>() { new Path() { PathId = 0, PathDescription = "Jít tancovat", NextLocationIds = RandomLocations[RandomEnum.ClubExperience] }, new Path() { PathId = 1, PathDescription = "Jít společně na drink k baru", NextLocationIds = RandomLocations[RandomEnum.ClubExperience] }, new Path() { PathId = 2, PathDescription = "Zkusit najít někoho jiného", NextLocationIds = RandomLocations[RandomEnum.ClubOptions] } } });
-
-
-
 
 
 
@@ -252,6 +249,10 @@ namespace RPG_game.Model
             Locations.Add(760, new Location() { Name = "Róza Eaglová", DateWithPerson = true, Description = "Róza... to je ta půvabná prodavačka, na kterou se těšíš při každém nákupu v Oliplusu.", Paths = new List<Path> { new Path() { PathId = 0, PathDescription = "Pokračovat", NextLocationId = GetRandom(RandomEnum.Date) } } });
             Locations.Add(761, new Location() { Name = "Neznámý prodavač", DateWithPerson = true, Description = "Setkali jste s supermarketu u kasy, ale jeho pravé jméno nevíš. Jak se asi jmenuje?", Paths = new List<Path> { new Path() { PathId = 0, PathDescription = "Pokračovat", NextLocationId = GetRandom(RandomEnum.Date) } } });
             Locations.Add(762, new Location() { Name = "Majk Klitenda", DateWithPerson = true, Description = "Majk je fakt borec. A na parketu to umí rozjet.", Paths = new List<Path> { new Path() { PathId = 0, PathDescription = "Pokračovat", NextLocationId = GetRandom(RandomEnum.Date) } } });
+
+            Locations.Add(800, new Location() { Name = "Upozornění", Description = "Potkal jsi a byl jsi odmítnut všemi lidmi před dosažením cíle. Buď můžeš hru hned ukončit, nebo si můžeš dále procházet městečko. Pro ukončení hry stačí kdykoliv zmáčknout tlačítko \"Konec hry\", které je umístěno na horní liště vlevo. ", Paths = new List<Path>() { new Path() { PathId = 0, PathDescription = "Pokračovat ve hře", NextLocationId = 10} } });
         }
+
+
     }
 }
