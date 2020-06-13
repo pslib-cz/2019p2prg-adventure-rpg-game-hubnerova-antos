@@ -18,6 +18,7 @@ namespace RPG_game.Services
 
         public Location Play()
         {
+            //_sessionstorage.Update();
             int? id = _sessionstorage.GetLocationId();
             Location location = _sessionstorage.GameStory.Locations[id.Value];
             if (location.LevelUp == true) this.LevelUp();
@@ -26,7 +27,11 @@ namespace RPG_game.Services
             if (location.PathToLock != null) this.LockPath(location.PathToLock.LocationId, location.PathToLock.PathId);
             if (location.PathToUnlock != null) this.UnlockPath(location.PathToUnlock.LocationId, location.PathToUnlock.PathId);
             if (location.PathsToUnlock != null) foreach (LocationPath item2 in location.PathsToUnlock) this.UnlockPath(item2.LocationId, item2.PathId);
-            if (location.Person != null) this.AddPerson(location.Person);
+            if (location.Person != null)
+            {
+                this.AddPerson(location.Person);
+                this.AddToLocationsIds(601, 0, location.Person.LocationId);
+            }
             MetPeople();
             if (location.RedirectPaths != null) foreach (RedirectPath item2 in location.RedirectPaths) this.RedirectPath(item2.LocationId, item2.PathId, item2.NewNextLocationId, item2.NewNextPage);
             if (location.Cost != 0) this.Spend(location.Cost);
@@ -157,6 +162,22 @@ namespace RPG_game.Services
         {
             _sessionstorage.Stats.ClubCount++;
             _sessionstorage.SaveStats();
+        }
+
+        public void AddToLocationsIds(int LocationId, int PathId, int NewNextLocationId)
+        {
+            /*foreach (var item in _sessionstorage.GameStory.Locations)
+            {
+                foreach (var item2 in item.Value.Paths)
+                {
+                    if (item2.NextLocationIds == _sessionstorage.GameStory.RandomLocations[randomEnum])
+                    {
+                        item2.NextLocationIds.Add(number);
+                    }
+                }
+            }*/
+            _sessionstorage.GameStory.Locations[LocationId].Paths[PathId].NextLocationIds.Add(NewNextLocationId);
+            _sessionstorage.SaveGameStory();
         }
 
     }

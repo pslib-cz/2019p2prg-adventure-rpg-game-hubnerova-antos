@@ -9,31 +9,30 @@ namespace RPG_game.Model
     public class GameStory
     {
         public Dictionary<int, Location> Locations = new Dictionary<int, Location>();
-        public Dictionary<RandomEnum, int[]> RandomLocations = new Dictionary<RandomEnum, int[]>();
+        public Dictionary<RandomEnum, List<int>> RandomLocations = new Dictionary<RandomEnum, List<int>>();
         readonly Random _random;
 
         public int GetRandom(RandomEnum random)
         {
-            int[] array = RandomLocations[random];
-            int start = _random.Next(0, array.Length);
-            return array[start];
+            List<int> list = RandomLocations[random];
+            int start = _random.Next(0, list.Count);
+            return list[start];
         }
 
         public GameStory(Random random)
         {
             _random = random;
-            RandomLocations.Add(RandomEnum.Hairstyle, new[] { 103, 105, 106});
-            RandomLocations.Add(RandomEnum.Date, new[] { 700, 701 });
-            RandomLocations.Add(RandomEnum.DateSuccess, new[] { 704, 705, 706 });
-            RandomLocations.Add(RandomEnum.KostikOptions, new[] { 408, 409, 410 });
-            RandomLocations.Add(RandomEnum.DinaOptions, new[] { 411, 412, 413 });
-            RandomLocations.Add(RandomEnum.MuseumAloneOptions, new[] { 414, 415 });
-            RandomLocations.Add(RandomEnum.CinemaPepaOptions, new[] { 308, 309 });
-            RandomLocations.Add(RandomEnum.CinemaJanaOptions, new[] { 315, 316 });
-            RandomLocations.Add(RandomEnum.MovieOptions, new[] { 311, 312, 313, 314 });
-            RandomLocations.Add(RandomEnum.ParkBenchOptions, new[] { 209, 210, 215, 216 });
-            RandomLocations.Add(RandomEnum.ClubOptions, new[] { 620, 621, 622, 623, 624 });
-
+            RandomLocations.Add(RandomEnum.Hairstyle, new List<int> { 103, 105, 106});
+            RandomLocations.Add(RandomEnum.Date, new List<int> { 700, 701 });
+            RandomLocations.Add(RandomEnum.DateSuccess, new List<int> { 704, 705, 706 });
+            RandomLocations.Add(RandomEnum.KostikOptions, new List<int> { 408, 409, 410 });
+            RandomLocations.Add(RandomEnum.DinaOptions, new List<int> { 411, 412, 413 });
+            RandomLocations.Add(RandomEnum.MuseumAloneOptions, new List<int> { 414, 415 });
+            RandomLocations.Add(RandomEnum.CinemaPepaOptions, new List<int> { 308, 309 });
+            RandomLocations.Add(RandomEnum.CinemaJanaOptions, new List<int> { 315, 316 });
+            RandomLocations.Add(RandomEnum.MovieOptions, new List<int> { 311, 312, 313, 314 });
+            RandomLocations.Add(RandomEnum.ParkBenchOptions, new List<int> { 209, 210, 215, 216 });
+            RandomLocations.Add(RandomEnum.ClubOptions, new List<int> { 620, 621, 622, 623, 624 });
 
             //Startup, konfigurace postavy (1-9)
             //Locations.Add(1, new Location() { Name = "Konfigurace tvé postavy", Description = "Tvým prvním úkolem bude vybrat si základní vlastnosti tvého hrdiny / ky. 😈", Paths = new List<Path>() { new Path() { PathId = 0, PathDescription = "Pokračovat", NextLocationId = 2 } } });
@@ -44,7 +43,7 @@ namespace RPG_game.Model
             Locations.Add(6, new Location() { Name = "Nové upozornění", Description = "Telefon: \"Tento úkol se ti bohužel nepovedl, zkus se na toto místo vrátit později.\"", Paths = new List<Path>() { new Path() { PathId = 0, PathDescription = "Pokračovat", NextLocationId = 10 } } });
 
             //Náměstí (10-19)
-            Locations.Add(10, new Location() { Name = "Náměstí", Description = "Přišel jsi na náměstí, můžeš pokračovat několika různými směry. Který si vybereš?", PathToUnlock = new LocationPath() { LocationId = 207, PathId = 0 }, Paths = new List<Path>() { new Path() { PathId = 0, PathDescription = "Zpět do pokoje", NextLocationId = 4 }, new Path() { PathId = 1, PathDescription = "Do kavárny", NextLocationId = 20 }, new Path() { PathId = 2, PathDescription = "Do kadeřnictví", NextLocationId = 100 }, new Path() { PathId = 3, PathDescription = "Do parku", NextLocationId = 200 }, new Path() { PathId = 4, PathDescription = "Do kina", NextLocationId = 300 }, new Path() { PathId = 5, PathDescription = "Do muzea", NextLocationId = 400 }, new Path() { PathId = 6, PathDescription = "Do obchodu", NextLocationId = 500 }, new Path() { PathId = 7, PathDescription = "Do klubu", IsLocked = true, NextLocationId = 600 } } });
+            Locations.Add(10, new Location() { Name = "Náměstí", Description = "Přišel jsi na náměstí, můžeš pokračovat několika různými směry. Který si vybereš?", PathToUnlock = new LocationPath() { LocationId = 207, PathId = 0 }, Paths = new List<Path>() { new Path() { PathId = 0, PathDescription = "Zpět do pokoje", NextLocationId = 4 }, new Path() { PathId = 1, PathDescription = "Do kavárny", NextLocationId = 20 }, new Path() { PathId = 2, PathDescription = "Do kadeřnictví", NextLocationId = 100 }, new Path() { PathId = 3, PathDescription = "Do parku", NextLocationId = 200 }, new Path() { PathId = 4, PathDescription = "Do kina", NextLocationId = 300 }, new Path() { PathId = 5, PathDescription = "Do muzea", NextLocationId = 400 }, new Path() { PathId = 6, PathDescription = "Do obchodu", NextLocationId = 500 }, new Path() { PathId = 7, PathDescription = "Do klubu", IsLocked = false, NextLocationId = 600 } } });
             //Locations.Add(11, new Location() { Name = "Náměstí", Description = "Jsi ve svém pokoji, máš telefon.. a ten píše: Jdi ven!", Paths = new List<Path>() { new Path() { PathId = 0, PathDescription = "Vydat se ven", NextLocationId = 10 } } });
 
             //Kavárna (20-29)
@@ -178,7 +177,7 @@ namespace RPG_game.Model
 
             //Taneční klub (600-699)
             Locations.Add(600, new Location() { Name = "Taneční klub Milimetr", Description = "...", Paths = new List<Path>() { new Path() { PathId = 0, PathDescription = "Jít dál", NextLocationId = 601 }, new Path() { PathId = 0, PathDescription = "Zpět na náměstí", NextLocationId = 10 } } });
-            Locations.Add(601, new Location() { Name = "Nové upozornění", Description = "Telefon: \"Nový úkol - Dostaň se dovnitř klubu a pozvi někoho na drink.\" ", Paths = new List<Path> { new Path() { PathId = 0, PathDescription = "Nechat se ostříhat od kadeřníka", NextLocationId = 102 } } });
+            Locations.Add(601, new Location() { Name = "Nové upozornění", Description = "Telefon: \"Nový úkol - Dostaň se dovnitř klubu a pozvi někoho na drink.\" ", Paths = new List<Path> { new Path() { PathId = 0, PathDescription = "?Pozvat někoho?", NextLocationIds = RandomLocations[RandomEnum.ClubOptions] } } });
             
             //před klubem
             Locations.Add(602, new Location() { Name = "", Description = "", Paths = new List<Path>() { new Path() { PathId = 0, PathDescription = "", NextLocationId = 10 } } });

@@ -12,10 +12,14 @@ namespace RPG_game.Model
         public bool IsLocked { get; set; }
         public string HoverDescription { get; set; }
 
-        public int[] NextLocationIds { 
+        public List<int> NextLocationIds {
+            get
+            {
+                return _locationIds;
+            }
             set {
                 _locationIds.AddRange(value);
-            } 
+            }
         }
         public int NextLocationId { 
             get {

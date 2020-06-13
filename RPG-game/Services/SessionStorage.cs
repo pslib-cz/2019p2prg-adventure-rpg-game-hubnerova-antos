@@ -65,5 +65,11 @@ namespace RPG_game.Services
         {
             _session.Set(GAMESTORYKEY, this.GameStory);
         }
+
+        public void Update()
+        {
+            GameStory = _session.Get<GameStory>(GAMESTORYKEY);
+            Stats = _session.Get<Stats>(STATSKEY);
+        }
     }
 }
