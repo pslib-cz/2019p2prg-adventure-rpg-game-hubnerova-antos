@@ -18,11 +18,13 @@ namespace RPG_game.Model
         public int CinemaCount { get; set; }
         public int PicnicCount { get; set; }
         public int ClubCount { get; set; }
+        public int MaxPeople { get; set; }
 
         public Dictionary<String, Person> Acquaintances = new Dictionary<String, Person>();
 
         public Stats()
         {
+            MaxPeople = 13;
             //Acquaintances.Add(new Person() { Name = "Dina Veselá", Age = 30, LocationId = 200});
         }
         //public int RelationshipLevel { get; set; }

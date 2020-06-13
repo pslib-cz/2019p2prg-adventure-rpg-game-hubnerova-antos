@@ -30,7 +30,7 @@ namespace RPG_game.Services
             if (location.Person != null)
             {
                 this.AddPerson(location.Person);
-                this.AddToLocationsIds(601, 0, location.Person.LocationId);
+                this.AddToLocationsIds(601, 0, location.Person.ClubLocationId);
             }
             MetPeople();
             if (location.RedirectPaths != null) foreach (RedirectPath item2 in location.RedirectPaths) this.RedirectPath(item2.LocationId, item2.PathId, item2.NewNextLocationId, item2.NewNextPage);
@@ -47,6 +47,18 @@ namespace RPG_game.Services
             {
                 this.RedirectPath(704, 0, 0, "Review");
                 this.RedirectPath(705, 0, 0, "Review");
+            }
+            if (_sessionstorage.Stats.Acquaintances.Count == _sessionstorage.Stats.MaxPeople)
+            {
+                int disabled = 0;
+                foreach (var item in _sessionstorage.Stats.Acquaintances)
+                {
+                    if (item.Value.Disabled)
+                    {
+                        disabled++;
+                        if (disabled == _sessionstorage.Stats.MaxPeople) location = _sessionstorage.GameStory.Locations[800];
+                    }
+                }
             }
             return location;
         }
