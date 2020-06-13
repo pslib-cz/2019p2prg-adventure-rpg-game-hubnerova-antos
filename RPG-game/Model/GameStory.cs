@@ -34,7 +34,7 @@ namespace RPG_game.Model
             RandomLocations.Add(RandomEnum.ParkBenchOptions, new List<int> { 209, 210, 215, 216 });
             RandomLocations.Add(RandomEnum.ClubOptions, new List<int> { 620, 621, 622, 623, 624 });
             RandomLocations.Add(RandomEnum.ClubExperience, new List<int> { 614, 615, 616 });
-            RandomLocations.Add(RandomEnum.ClubEnter, new List<int> { 414, 415 });
+            RandomLocations.Add(RandomEnum.ClubEnter, new List<int> { 602, 603 });
 
 
             //Startup, konfigurace postavy (1-9)
