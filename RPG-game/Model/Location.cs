@@ -26,6 +26,7 @@ namespace RPG_game.Model
         public bool DateRejected { get; set; }
         public bool DateWithPerson { get; set; }
         public bool Club { get; set; }
+
     }
 
 }

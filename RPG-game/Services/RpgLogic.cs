@@ -31,6 +31,13 @@ namespace RPG_game.Services
             {
                 this.AddPerson(location.Person);
                 this.AddToLocationsIds(608, 2, location.Person.ClubLocationId);
+                this.AddToLocationsIds(612, 0, location.Person.ClubLocationId);
+                this.AddToLocationsIds(613, 1, location.Person.ClubLocationId);
+                for (int i = 0; i < 11; i++)
+                {
+                    this.AddToLocationsIds(625 + i, 2, location.Person.ClubLocationId);
+                }
+
             }
             MetPeople();
             if (location.RedirectPaths != null) foreach (RedirectPath item2 in location.RedirectPaths) this.RedirectPath(item2.LocationId, item2.PathId, item2.NewNextLocationId, item2.NewNextPage);
