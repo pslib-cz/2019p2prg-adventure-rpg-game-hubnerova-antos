@@ -14,5 +14,7 @@ namespace RPG_game.Model
         MovieOptions = 8,
         ParkBenchOptions = 9,
         ClubOptions = 10,
+        ClubExperience = 11,
+        ClubEnter = 12,
     }
 }

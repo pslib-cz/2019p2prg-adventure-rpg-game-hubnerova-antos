@@ -43,7 +43,7 @@ namespace RPG_game.Model
             Locations.Add(6, new Location() { Name = "Nové upozornění", Description = "Telefon: \"Tento úkol se ti bohužel nepovedl, zkus se na toto místo vrátit později.\"", Paths = new List<Path>() { new Path() { PathId = 0, PathDescription = "Pokračovat", NextLocationId = 10 } } });
 
             //Náměstí (10-19)
-            Locations.Add(10, new Location() { Name = "Náměstí", Description = "Přišel jsi na náměstí, můžeš pokračovat několika různými směry. Který si vybereš?", PathToUnlock = new LocationPath() { LocationId = 207, PathId = 0 }, Paths = new List<Path>() { new Path() { PathId = 0, PathDescription = "Zpět do pokoje", NextLocationId = 4 }, new Path() { PathId = 1, PathDescription = "Do kavárny", NextLocationId = 20 }, new Path() { PathId = 2, PathDescription = "Do kadeřnictví", NextLocationId = 100 }, new Path() { PathId = 3, PathDescription = "Do parku", NextLocationId = 200 }, new Path() { PathId = 4, PathDescription = "Do kina", NextLocationId = 300 }, new Path() { PathId = 5, PathDescription = "Do muzea", NextLocationId = 400 }, new Path() { PathId = 6, PathDescription = "Do obchodu", NextLocationId = 500 }, new Path() { PathId = 7, PathDescription = "Do klubu", IsLocked = false, NextLocationId = 600 } } });
+            Locations.Add(10, new Location() { Name = "Náměstí", Description = "Přišel jsi na náměstí, můžeš pokračovat několika různými směry. Který si vybereš?", PathToUnlock = new LocationPath() { LocationId = 207, PathId = 0 }, RedirectPaths = new List<RedirectPath>() { new RedirectPath() { LocationId = 5, PathId = 0, NewNextLocationId = 10 } }, Paths = new List<Path>() { new Path() { PathId = 0, PathDescription = "Zpět do pokoje", NextLocationId = 4 }, new Path() { PathId = 1, PathDescription = "Do kavárny", NextLocationId = 20 }, new Path() { PathId = 2, PathDescription = "Do kadeřnictví", NextLocationId = 100 }, new Path() { PathId = 3, PathDescription = "Do parku", NextLocationId = 200 }, new Path() { PathId = 4, PathDescription = "Do kina", NextLocationId = 300 }, new Path() { PathId = 5, PathDescription = "Do muzea", NextLocationId = 400 }, new Path() { PathId = 6, PathDescription = "Do obchodu", NextLocationId = 500 }, new Path() { PathId = 7, PathDescription = "Do klubu", IsLocked = false, NextLocationId = 600 } } });
             //Locations.Add(11, new Location() { Name = "Náměstí", Description = "Jsi ve svém pokoji, máš telefon.. a ten píše: Jdi ven!", Paths = new List<Path>() { new Path() { PathId = 0, PathDescription = "Vydat se ven", NextLocationId = 10 } } });
 
             //Kavárna (20-29)
@@ -154,10 +154,6 @@ namespace RPG_game.Model
             Locations.Add(414, new Location() { Name = "Muzeum", Description = "Procházíš se už asi 10 minut, ale nic tě ne a ne zaujmout.", Paths = new List<Path>() { new Path { PathId = 0, PathDescription = "Odejít z muzea", NextLocationId = 10 } } });
             Locations.Add(415, new Location() { Name = "Muzeum", Description = "Byl jsi tak zaujat všemi exponáty, že jsi ztratil pojem o čase. Je čas jít.", Paths = new List<Path>() { new Path { PathId = 0, PathDescription = "Odejít z muzea", NextLocationId = 10 } } });
 
-            //alone Muzeum 1
-
-
-
 
 
             //Supermarket (500-599)
@@ -175,12 +171,30 @@ namespace RPG_game.Model
 
 
 
-            //Taneční klub (600-699)
+            //TANEČNÍ KLUB (600-699)
             Locations.Add(600, new Location() { Name = "Taneční klub Milimetr", Description = "...", Paths = new List<Path>() { new Path() { PathId = 0, PathDescription = "Jít dál", NextLocationId = 601 }, new Path() { PathId = 0, PathDescription = "Zpět na náměstí", NextLocationId = 10 } } });
-            Locations.Add(601, new Location() { Name = "Nové upozornění", Description = "Telefon: \"Nový úkol - Dostaň se dovnitř klubu a pozvi někoho na drink.\" ", Paths = new List<Path> { new Path() { PathId = 0, PathDescription = "?Pozvat někoho?", NextLocationIds = RandomLocations[RandomEnum.ClubOptions] } } });
-            
+            Locations.Add(601, new Location() { Name = "Nové upozornění", Description = "Telefon: \"Nový úkol - Dostaň se dovnitř klubu.\" ", RedirectPaths = new List<RedirectPath>() { new RedirectPath() { LocationId = 5, PathId = 0, NewNextLocationId = 608 } }, Paths = new List<Path> { new Path() { PathId = 0, PathDescription = "Pokračovat", NextLocationId = 602 } } });
+
             //před klubem
-            Locations.Add(602, new Location() { Name = "", Description = "", Paths = new List<Path>() { new Path() { PathId = 0, PathDescription = "", NextLocationId = 10 } } });
+            Locations.Add(602, new Location() { Name = "Před klubem", Description = "Řada pomalu postupuje a když přijde na tebe, vyhazovač se na tebe zběžně podívá a pustí tě dovnitř.", Paths = new List<Path>() { new Path() { PathId = 0, PathDescription = "Jít do klubu", NextLocationId = 606 } } });
+            Locations.Add(603, new Location() { Name = "Před klubem", Description = "Komplikace se objevily dřív, než jsi myslel. Už už ses těšil, že se po dlouhém čekání ve frontě konečně dostaneš dovnitř, když tě zastaví vyhazovač. \"Máme plno, další už nemůžou dovnitř.\"", Paths = new List<Path>() { new Path() { PathId = 0, PathDescription = "Rozhořčeně odejít", NextLocationId = 6 }, new Path() { PathId = 0, PathDescription = "Zkusit podplatit vyhazovače", NextLocationId = 10 }, new Path() { PathId = 0, PathDescription = "Zkusit přemluvit dohazovače", NextLocationId = 10 }, new Path() { PathId = 0, PathDescription = "Snažit se nepozorovaně proklouznout dovnitř", NextLocationId = 10 } } });
+
+            Locations.Add(604, new Location() { Name = "Povedlo se", Description = "Vyhazovač se opatrně podíval kolem sebe, vzal ti bankovku z ruky a rychle si ji strčil do kapsy. Pak pokynul hlavou ke vchodu.", Cost = 500, Paths = new List<Path>() { new Path() { PathId = 0, PathDescription = "Pokračovat dovnitř", NextLocationId = 606 } } });
+            Locations.Add(606, new Location() { Name = "Povedlo se", Description = "Dostal ses dovnitř klubu.", Cost = 200, Club = true, Paths = new List<Path>() { new Path() { PathId = 0, PathDescription = "", NextLocationId = 10 } } });
+            Locations.Add(607, new Location() { Name = "Radši jdi", Description = "Tentokrát se ti nepovedlo dostat dovnitř.", Paths = new List<Path>() { new Path() { PathId = 0, PathDescription = "Odejít", NextLocationId = 6 } } });
+
+            Locations.Add(608, new Location() { Name = "", Description = "", Paths = new List<Path>() { new Path() { PathId = 0, PathDescription = "", NextLocationId = 10 } } });
+            Locations.Add(609, new Location() { Name = "", Description = "", Paths = new List<Path>() { new Path() { PathId = 0, PathDescription = "", NextLocationId = 10 } } });
+            Locations.Add(610, new Location() { Name = "", Description = "", Paths = new List<Path>() { new Path() { PathId = 0, PathDescription = "", NextLocationId = 10 } } });
+            Locations.Add(611, new Location() { Name = "", Description = "", Paths = new List<Path>() { new Path() { PathId = 0, PathDescription = "", NextLocationId = 10 } } });
+            Locations.Add(612, new Location() { Name = "", Description = "", Paths = new List<Path>() { new Path() { PathId = 0, PathDescription = "", NextLocationId = 10 } } });
+            Locations.Add(613, new Location() { Name = "", Description = "", Paths = new List<Path>() { new Path() { PathId = 0, PathDescription = "", NextLocationId = 10 } } });
+            Locations.Add(614, new Location() { Name = "", Description = "", Paths = new List<Path>() { new Path() { PathId = 0, PathDescription = "", NextLocationId = 10 } } });
+            Locations.Add(615, new Location() { Name = "", Description = "", Paths = new List<Path>() { new Path() { PathId = 0, PathDescription = "", NextLocationId = 10 } } });
+            Locations.Add(616, new Location() { Name = "", Description = "", Paths = new List<Path>() { new Path() { PathId = 0, PathDescription = "", NextLocationId = 10 } } });
+            Locations.Add(617, new Location() { Name = "", Description = "", Paths = new List<Path>() { new Path() { PathId = 0, PathDescription = "", NextLocationId = 10 } } });
+            Locations.Add(618, new Location() { Name = "", Description = "", Paths = new List<Path>() { new Path() { PathId = 0, PathDescription = "", NextLocationId = 10 } } });
+            Locations.Add(619, new Location() { Name = "", Description = "", Paths = new List<Path>() { new Path() { PathId = 0, PathDescription = "", NextLocationId = 10 } } });
 
 
             //random klub možnosti
@@ -189,8 +203,18 @@ namespace RPG_game.Model
             Locations.Add(622, new Location() { Name = "RANDE SE ZÁCHODOVOU MÍSOU", Description = "Po tvém neúspěšném hledání jsi se vydal dát si něco k pití. Barman ti byl sice určitě vděčný za tvá dýška, která se s každou skleničkou navyšovala, tvůj obličej ale dost protestuje, když strávíš zbytek noci přitisklý na záchodovou mísu.", Paths = new List<Path>() { new Path() { PathId = 0, PathDescription = "Odejít z klubu", NextLocationId = 10 } } });
             Locations.Add(623, new Location() { Name = "NEVÍTANÝ SPOLEČNÍK", Description = "Po marném hledání známé tváře v davu zpocených těl ses po pár drincích přidal ke skupince pohledně vypadajících mužů a žen. Nevypadali zrovna nadšení, když jsi jim celou noc vyprávěl o svém životě a odmítal ses od nich oddělit.", Paths = new List<Path>() { new Path() { PathId = 0, PathDescription = "Odejít z klubu", NextLocationId = 10 } } });
             Locations.Add(624, new Location() { Name = "PIJÁCI U KULATÉHO STOLU", Description = "Nenašel jsi nikoho, koho bys znal. Už už jsi chtěl odejít, když tě parta chlápků ve středním věku vtáhla k jejich stolu na partičku karet. Měl jsi štěstí a vyhrál jsi. Pár ponožek, dvě propisky a... snubní prsten?", Paths = new List<Path>() { new Path() { PathId = 0, PathDescription = "", NextLocationId = 10 } } });
-            Locations.Add(625, new Location() { Name = "", Description = "", Paths = new List<Path>() { new Path() { PathId = 0, PathDescription = "", NextLocationId = 10 } } });
-            Locations.Add(626, new Location() { Name = "", Description = "", Paths = new List<Path>() { new Path() { PathId = 0, PathDescription = "", NextLocationId = 10 } } });
+            Locations.Add(625, new Location() { Name = "MAN NA OBZORU", Description = "Potkal jsi Maniela.", Paths = new List<Path>() { new Path() { PathId = 0, PathDescription = "", NextLocationId = 10 } } });
+            Locations.Add(626, new Location() { Name = "LATTÉ SE ŠLEHAČKOU", Description = "Potkal jsi Manielu.", Paths = new List<Path>() { new Path() { PathId = 0, PathDescription = "", NextLocationId = 10 } } });
+            Locations.Add(627, new Location() { Name = "STAR WARS KWEEN", Description = "Potkal jsi Janu Periodu.", Paths = new List<Path>() { new Path() { PathId = 0, PathDescription = "", NextLocationId = 10 } } });
+            Locations.Add(628, new Location() { Name = "12, TO JE POHODA", Description = "Potkal jsi Lenku.", Paths = new List<Path>() { new Path() { PathId = 0, PathDescription = "", NextLocationId = 10 } } });
+            Locations.Add(629, new Location() { Name = "UTRŽENÝ ZE ŘETĚZU", Description = "Potkal jsi Pepu Hřebce.", Paths = new List<Path>() { new Path() { PathId = 0, PathDescription = "", NextLocationId = 10 } } });
+            Locations.Add(630, new Location() { Name = "KULMA, NŮŽKY, HŘEBEN!", Description = "Potkal jsi Zohana.", Paths = new List<Path>() { new Path() { PathId = 0, PathDescription = "", NextLocationId = 10 } } });
+            Locations.Add(631, new Location() { Name = "ZOHANKA", Description = "Potkal jsi Břetislavu Matějkovou.", Paths = new List<Path>() { new Path() { PathId = 0, PathDescription = "", NextLocationId = 10 } } });
+            Locations.Add(632, new Location() { Name = "NESMUTNI", Description = "Potkal jsi Dinu Veselou.", Paths = new List<Path>() { new Path() { PathId = 0, PathDescription = "", NextLocationId = 10 } } });
+            Locations.Add(633, new Location() { Name = "AŽ DO MORKU KOSTÍ", Description = "Potkal jsi Kostíka.", Paths = new List<Path>() { new Path() { PathId = 0, PathDescription = "", NextLocationId = 10 } } });
+            Locations.Add(634, new Location() { Name = "CHLEBA S MÁSLEM SE SALÁMEM", Description = "Potkal jsi Rózu Eaglovou.", Paths = new List<Path>() { new Path() { PathId = 0, PathDescription = "", NextLocationId = 10 } } });
+            Locations.Add(635, new Location() { Name = "PEČIVO, CHLEBA, ČTYŘI ROHLÍKY", Description = "Potkal jsi Neznámého prodavače", Paths = new List<Path>() { new Path() { PathId = 0, PathDescription = "Jít tancovat", NextLocationId =  } } });
+
 
             //Rande rybník(699-709)
             Locations.Add(699, new Location() { Name = "Rybník", Description = "Dorazil jsi k rybníku. Po chvíli rozhlížení musíš uznat, že měl Havel pravdu. Tohle místo je fakt přímo stvořené na balení.", RedirectPaths = new List<RedirectPath>() { new RedirectPath() { LocationId = 701, PathId = 1, NewNextLocationId = 703 }, new RedirectPath() { LocationId = 701, PathId = 0, NewNextLocationId = 10 } }, Paths = new List<Path> { new Path() { PathId = 0, PathDescription = "Pozvat někoho na rande", NextLocationId = 703 }, new Path() { PathId = 0, PathDescription = "Vrátit se zpět", NextLocationId = 200 } } });
