@@ -30,7 +30,7 @@ namespace RPG_game.Services
             if (location.Person != null)
             {
                 this.AddPerson(location.Person);
-                this.AddToLocationsIds(601, 0, location.Person.ClubLocationId);
+                this.AddToLocationsIds(608, 2, location.Person.ClubLocationId);
             }
             MetPeople();
             if (location.RedirectPaths != null) foreach (RedirectPath item2 in location.RedirectPaths) this.RedirectPath(item2.LocationId, item2.PathId, item2.NewNextLocationId, item2.NewNextPage);
